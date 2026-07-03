@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>PromptOps — Topic Library</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="page-container">
+    <div class="wrap">
+      <a href="index.html" class="switch-btn small">← Back to Dossier</a>
+      <article class="capability-panel">
+        <div class="eyebrow">PROMPTOPS / TOPIC LIBRARY</div>
+        <h1>Prompt systems for thoughtful brands, launches, and fast-moving teams.</h1>
+        <p class="lede">This library is built for content, product, design, and trading workflows — each topic becomes a more structured intake so the first reply feels useful instead of generic.</p>
+
+        <div class="code-block" style="margin-top:2rem;">
+          <span class="code-line code-comment">// Claude-style prompt assembly for launch systems</span>
+          <span class="code-line"><span class="code-keyword">const</span> prompt = <span class="code-function">buildPrompt</span>({</span>
+          <span class="code-line">  <span class="code-property">context</span>: <span class="code-string">'Brand voice, campaign outcome, audience, format'</span>,</span>
+          <span class="code-line">  <span class="code-property">intent</span>: <span class="code-string">'Generate social copy, UX copy, and launch messaging'</span>,</span>
+          <span class="code-line">  <span class="code-property">constraints</span>: [<span class="code-string">'concise'</span>, <span class="code-string">'brand-aware'</span>, <span class="code-string">'ready for direct handoff'</span>],</span>
+          <span class="code-line">  <span class="code-property">output</span>: <span class="code-string">'single-session prompt response'</span>,</span>
+          <span class="code-line">});</span>
+        </div>
+
+        <div class="spec-strip" style="margin-top:2rem;">
+          <div class="spec-cell">
+            <div class="num"><span>50+</span></div>
+            <div class="lab">Prompt topics across content, strategy, and product work</div>
+          </div>
+          <div class="spec-cell">
+            <div class="num"><span>1-click</span></div>
+            <div class="lab">Open the intake with a tailored starting brief</div>
+          </div>
+          <div class="spec-cell">
+            <div class="num"><span>Brand-aware</span></div>
+            <div class="lab">Responses are shaped around tone, audience, and goals</div>
+          </div>
+          <div class="spec-cell">
+            <div class="num"><span>Multi-use</span></div>
+            <div class="lab">Built for launches, social, UX writing, and research</div>
+          </div>
+          <div class="spec-cell">
+            <div class="num"><span>Fast handoff</span></div>
+            <div class="lab">Structured prompts reduce back-and-forth and save time</div>
+          </div>
+        </div>
+
+        <div class="blueprint-grid" style="margin-top:2rem;">
+          <div class="blueprint-card">
+            <div class="eyebrow">01 / SYSTEM SHAPE</div>
+            <h3>Structured, not sterile</h3>
+            <p>Every prompt starts with context, audience, output format, and an action step so the response is usable as soon as it lands.</p>
+          </div>
+          <div class="blueprint-card">
+            <div class="eyebrow">02 / FLEXIBLE USE CASES</div>
+            <h3>Built for many skills</h3>
+            <p>From marketing copy and product briefs to UX flows and trading research, the topics are written to be adaptable.</p>
+          </div>
+          <div class="blueprint-card">
+            <div class="eyebrow">03 / INTAKE TO ACTION</div>
+            <h3>Fast route into the conversation</h3>
+            <p>Each prompt opens straight into the contact flow with the right subject and starting message so momentum stays intact.</p>
+          </div>
+        </div>
+
+        <div class="metric-grid" style="margin-top:2rem;">
+          <div class="metric-card">
+            <h3>Thoughtful briefs</h3>
+            <p>Prompts are framed around real outcomes, not generic writing exercises.</p>
+          </div>
+          <div class="metric-card">
+            <h3>Faster iteration</h3>
+            <p>Start from a clear direction and refine with less setup time on every project.</p>
+          </div>
+          <div class="metric-card">
+            <h3>Cleaner collaboration</h3>
+            <p>Useful handoffs make it easier to move from idea to draft without losing context.</p>
+          </div>
+        </div>
+
+        <div class="topic-section" style="margin-top:2.4rem;">
+          <div class="sec-head">
+            <div class="eyebrow">02 / BROWSE THE LIBRARY</div>
+            <h2>Choose a topic and launch the intake</h2>
+            <p class="lede">Pick the prompt theme that matches your brief, then open the form with a tailored starting message already in place.</p>
+          </div>
+          <div class="topic-grid" id="topicGrid"></div>
+        </div>
+
+        <div class="topic-footer" style="margin-top:2rem;">
+          <div class="topic-panel">
+            <h3>Trading consult</h3>
+            <p>Need direct trading guidance? Open the intake with a prefilled strategy question and continue the conversation.</p>
+            <a class="switch-btn btn-large" id="tradingConsultBtn" href="index.html?scrollToContact=1&recipient=kaveeshshadow@gmail.com&prefillType=Trading%20Consult&prefillMsg=I%20have%20a%20trading%20question%20and%20need%20help%20with%20my%20strategy.%20Please%20detail%20the%20query%20below." target="_self">Open Trading Consult</a>
+          </div>
+          <div class="topic-panel">
+            <h3>PromptOps notes</h3>
+            <p>Each topic routes to the home-page intake with a tailored opening brief so the conversation starts with momentum.</p>
+          </div>
+        </div>
+      </article>
+    </div>
+  </main>
+  <script>
+    const topics = [
+      'Cars engineering', 'Automobile creative research', 'Instagram marketing', 'Website building', '3D editing',
+      'Product photography', 'Brand storytelling', 'Social ad copy', 'UX microcopy', 'Conversion headlines',
+      'Landing page flow', 'Mobile app concept', 'Video script writing', 'Email campaign', 'Influencer outreach',
+      'Retail merchandising', 'Packaging voice', 'User journey mapping', 'SEO article outline', 'Research report',
+      'Luxury branding', 'Visual system', 'Motion storyboarding', 'Campaign concept', 'Event promotion',
+      'Retail window display', 'Creative direction', 'Performance landing page', 'Startup positioning', 'Live stream copy',
+      'Product launch plan', 'Customer persona', 'Brand anthem', 'Ecommerce UX', 'Content calendar', 'Reels concept',
+      'Newsletter series', 'Sales page headline', 'SEO keywords', 'Customer survey', 'Case study structure',
+      'App onboarding', 'Dashboard UI prompt', '3D asset brief', 'Blender concept', 'Render style guide',
+      'AI art prompt', 'Podcast episode plan', 'Media kit copy', 'Press release draft', 'Community growth plan',
+      'Data visualization', 'Presentation deck', 'Growth experiment', 'A/B test idea', 'Landing page audit',
+      'Conversion funnel', 'Ad creative idea', 'Email nurture flow', 'Subscription offer', 'Business pitch',
+      'Creative research', 'Trend report', 'UX audit', 'Product launch email', 'Website redesign', 'Design system',
+      'Social media story', 'Brand refresh', 'Website audit', 'Performance content', 'Influencer collaboration',
+      'Retail activation', 'Shopify merchandising', 'Customer retention', 'Product narrative', 'Interior design concept',
+      'Architecture vision', 'Industrial design brief', '3D motion sequence', 'Sound design story', 'AI workflow',
+      'Automation prompt', 'User feedback script', 'Sales deck outline', 'Brand conversion copy', 'Creative strategy',
+      'Digital magazine', 'Portfolio concept', 'Editorial direction', 'Visual research', 'Product roadmap',
+      'Investor pitch', 'Corporate identity', 'Workshop prompt', 'Creative sprint', 'Market research',
+      'Trend spotting', 'Video storyboard', 'Website storyboard', 'Concept testing', 'Prototype brief', 'Voice tone guide',
+      'Experiential design', 'Digital product launch', 'Web3 concept', 'Luxury service brief', 'AR experience',
+      'VR storyboard', 'UX writing system', 'Personal brand story', 'Design critique prompt'
+    ];
+
+    const topicGrid = document.getElementById('topicGrid');
+
+    function buildMessage(topic) {
+      if (/3D|Blender|render|motion|AR|VR|asset/i.test(topic)) {
+        return `I want to create this ${topic} topic in Blender and build a visual prompt around it.`;
+      }
+      if (/trading|forecast|strategy|market|forex|crypto/i.test(topic)) {
+        return `I want to explore a ${topic} strategy and need a prompt-driven research brief.`;
+      }
+      if (/instagram|social|email|campaign|newsletter|influencer/i.test(topic)) {
+        return `I want a ${topic} prompt for content, storytelling, and engagement.`;
+      }
+      return `I want a prompt for ${topic} with structure, creative direction, and an action plan.`;
+    }
+
+    topics.forEach(topic => {
+      const card = document.createElement('article');
+      card.className = 'topic-card';
+      card.innerHTML = `
+        <div class="topic-copy">
+          <h3>${topic}</h3>
+          <p>${buildMessage(topic)}</p>
+        </div>
+        <a class="switch-btn btn-large" href="index.html?scrollToContact=1&recipient=kaveeshshadow@gmail.com&prefillType=PromptOps&prefillMsg=${encodeURIComponent(buildMessage(topic))}" target="_self">Contact Me</a>
+      `;
+      topicGrid.appendChild(card);
+    });
+  </script>
+</body>
+</html>

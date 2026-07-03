@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Skill — Detail</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="page-container">
+    <div class="wrap">
+      <a href="index.html" class="switch-btn small">← Back to Dossier</a>
+      <article class="capability-panel" id="skillPanel">
+        <div class="eyebrow">SKILL DETAIL</div>
+        <h1 id="skillTitle">Skill</h1>
+        <p id="skillDesc" class="lede">Loading…</p>
+        <div style="margin-top:1.6rem;"><a id="skillCTA" class="switch-btn btn-large" href="index.html">Explore related work</a></div>
+      </article>
+    </div>
+  </main>
+  <script>
+    const params = new URLSearchParams(location.search);
+    const skill = params.get('skill') || 'Skill';
+    const skillTitle = document.getElementById('skillTitle');
+    const skillDesc = document.getElementById('skillDesc');
+    const skillCTA = document.getElementById('skillCTA');
+    const map = {
+      'Ecom Design': 'Shopify and headless storefront builds focused on conversion, speed, and modular design systems.',
+      'Automotive Craft': 'Physical and digital narratives for automotive projects — photography, spec sheets, and productization.',
+      'PromptOps': 'Versioned prompt pipelines, QA harnesses, and rollout templates for copy and creative systems.',
+      'Forex Trading': 'Technical analysis, discretionary execution, and telemetry-driven decision systems.'
+    };
+    skillTitle.textContent = skill;
+    skillDesc.textContent = map[skill] || 'Specialized systems and tactics applied to this skill.';
+    skillCTA.href = 'project.html?project=' + encodeURIComponent(skill + ' Case');
+  </script>
+</body>
+</html>

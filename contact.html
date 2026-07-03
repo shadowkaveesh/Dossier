@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Contact Us</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="page-container">
+    <div class="wrap">
+      <a href="index.html" class="switch-btn small">← Back to Dossier</a>
+      <article class="capability-panel" style="margin-top:1.5rem;">
+        <div class="eyebrow">CONTACT US</div>
+        <h1>Talk about existing builds, audit needs, or new work.</h1>
+        <p class="lede">Use the same intake flow as the start-a-build page. This page routes your request directly to the right inbox so the next step happens faster.</p>
+
+        <div class="con-grid" style="margin-top:2rem;">
+          <form id="intakeForm" onsubmit="return handleSubmit(event)" class="rv">
+            <div class="field"><label for="fn">Name</label><input id="fn" type="text" required placeholder="Your name"></div>
+            <div class="field"><label for="fe">Email</label><input id="fe" type="email" required placeholder="you@domain.com"></div>
+            <div class="field"><label for="ft">Project Type</label>
+              <select id="ft">
+                <option>Ecom Store Build</option>
+                <option>Web Design</option>
+                <option>PromptOps System</option>
+                <option>Trading Consult</option>
+                <option>Brand & Marketing</option>
+                <option>Something Else</option>
+              </select>
+            </div>
+            <div class="field"><label for="fm">Message</label><textarea id="fm" required placeholder="What are we building?"></textarea></div>
+            <button class="btn primary" type="submit" id="submitBtn">
+              Submit Intake
+              <span class="bwave"></span><span class="bsweep"></span><span class="bglass"></span>
+            </button>
+          </form>
+          <div class="rv2">
+            <div class="reg-card">
+              <div><b>OPERATOR</b> // Versatile Carz</div>
+              <div><b>SKILLS</b> // Ecom · Design · PromptOps · Forex · Mktg</div>
+              <div><b>AVAILABILITY</b> // Remote engagements open</div>
+              <div><b>FIELD NOTES</b> // <a href="https://www.youtube.com/@Versatile_carz" target="_blank" rel="noopener">@versatile_carz ↗</a></div>
+              <div><b>RESPONSE</b> // Within 24 hours</div>
+            </div>
+            <div class="soc-row">
+              <a class="btn sm" href="https://www.instagram.com/versatile_carz/" target="_blank" rel="noopener">Instagram ↗<span class="bwave"></span><span class="bsweep"></span><span class="bglass"></span></a>
+            </div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </main>
+
+  <footer>
+    <div class="w">
+      <div class="ft-rule"></div>
+      <div class="ft-row">
+        <div class="ft-t">Versatile Carz — Build Sheet Rev. 2024</div>
+        <div class="ft-t">© <span id="yr"></span> All Skills Reserved · <a class="ft-ig" href="https://www.instagram.com/versatile_carz/" target="_blank" rel="noopener">@versatile_carz</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function handleSubmit(e){
+      e.preventDefault();
+      const name = document.getElementById('fn')?.value.trim();
+      const email = document.getElementById('fe')?.value.trim();
+      const type = document.getElementById('ft')?.value || '';
+      const msg = document.getElementById('fm')?.value.trim();
+      const btn = document.getElementById('submitBtn');
+      const to = 'kaveeshshadow@gmail.com';
+      const subject = `Build Intake — ${type} — ${name || 'New Lead'}`;
+      const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nProject Type: ${type}\n\nMessage:\n${msg}`);
+      const mailto = `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${body}`;
+      window.location.href = mailto;
+      btn.innerHTML = 'Intake Logged ✓<span class="bwave"></span><span class="bsweep"></span><span class="bglass"></span>';
+      btn.disabled = true;
+      setTimeout(() => {
+        btn.innerHTML = 'Submit Intake<span class="bwave"></span><span class="bsweep"></span><span class="bglass"></span>';
+        btn.disabled = false;
+      }, 3000);
+      return false;
+    }
+    document.getElementById('yr').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

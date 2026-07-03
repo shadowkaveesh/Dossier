@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Project — Detail</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="page-container">
+    <div class="wrap">
+      <a href="index.html" class="switch-btn small">← Back to Dossier</a>
+      <article class="capability-panel" id="projectPanel">
+        <div class="eyebrow">PROJECT DETAIL</div>
+        <h1 id="projectTitle">Project</h1>
+        <p id="projectDesc" class="lede">Loading…</p>
+        <div style="margin-top:1.6rem; display:flex; gap:0.8rem; align-items:center;">
+          <a id="openExternal" class="switch-btn btn-large" href="#">Open External</a>
+          <a href="index.html" class="switch-btn">Return</a>
+        </div>
+      </article>
+    </div>
+  </main>
+  <script>
+    const builds = [
+      { title: 'Brand X Shopify Store', description: 'Shopify storefront built for premium merch, fast checkout, and conversion-first layout.', link: 'https://www.shopify.com' },
+      { title: 'Luxury Rebrand Web Flow', description: 'High-end design system paired with micro-interactions and polished brand motion.', link: '#' },
+      { title: 'PromptOps Launch Stack', description: 'A prompt pipeline for creative briefs, drafts, critiques, and final polish.', link: '#' },
+      { title: 'Forex Dashboard Concept', description: 'Trading desk UI with price telemetries, risk overlays, and momentum signals.', link: '#' }
+    ];
+
+    const params = new URLSearchParams(location.search);
+    const project = params.get('project') || '';
+    const titleEl = document.getElementById('projectTitle');
+    const descEl = document.getElementById('projectDesc');
+    const openExternal = document.getElementById('openExternal');
+    const found = builds.find(b => b.title === project) || { title: project || 'Untitled', description: 'Project details will appear here.', link: '#' };
+    titleEl.textContent = found.title;
+    descEl.textContent = found.description;
+    openExternal.href = found.link || '#';
+    if (found.link && found.link !== '#') openExternal.setAttribute('target','_blank');
+    else openExternal.classList.add('disabled');
+  </script>
+</body>
+</html>

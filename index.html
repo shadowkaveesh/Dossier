@@ -1,0 +1,1129 @@
+cat > /home/claude/index.html << 'HTMLEOF'
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Versatile Carz — Build Sheet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;700;900&family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ── TOKENS ─────────────────────────────────────── */
+:root{
+  --bg:#111110;
+  --bg2:#141412;
+  --panel:#191917;
+  --panel-hi:#1e1e1b;
+  --ink:#E8E3D8;
+  --ink-dim:#8a857a;
+  --ink-ghost:rgba(232,227,216,0.12);
+  --hair:rgba(232,227,216,0.11);
+  --hair2:rgba(232,227,216,0.22);
+  --red:#FF4D1C;
+  --red-soft:rgba(255,77,28,0.18);
+  --steel:#6B93AD;
+  --gold:#BF9840;
+  --D:'Big Shoulders Display',sans-serif;
+  --M:'IBM Plex Mono',monospace;
+  --B:'Inter',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--bg);color:var(--ink);font-family:var(--B);
+  overflow-x:hidden;
+  background-image:
+    repeating-linear-gradient(0deg,rgba(232,227,216,.022) 0 1px,transparent 1px 52px),
+    repeating-linear-gradient(90deg,rgba(232,227,216,.022) 0 1px,transparent 1px 52px);
+}
+a{color:inherit;text-decoration:none;}
+img{max-width:100%;display:block;}
+::selection{background:var(--red);color:#0a0a09;}
+:focus-visible{outline:2px solid var(--red);outline-offset:3px;}
+
+/* CURSOR */
+#cur{position:fixed;top:0;left:0;width:16px;height:16px;pointer-events:none;z-index:9000;mix-blend-mode:difference;}
+#cur::before{content:"";position:absolute;inset:0;border:1px solid var(--ink);border-radius:50%;transform:translate(-50%,-50%);transition:transform .15s ease,border-color .2s ease;}
+#cur.hov::before{transform:translate(-50%,-50%) scale(2.4);border-color:var(--red);}
+@media(max-width:900px){#cur{display:none;}}
+
+/* WRAP */
+.w{max-width:1320px;margin:0 auto;padding:0 36px;}
+@media(max-width:720px){.w{padding:0 20px;}}
+
+/* UTILS */
+.eyebrow{font-family:var(--M);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--red);display:flex;align-items:center;gap:10px;}
+.eyebrow::before{content:"";width:20px;height:1px;background:var(--red);flex-shrink:0;}
+h1,h2,h3,h4{font-family:var(--D);font-weight:700;letter-spacing:.01em;text-transform:uppercase;line-height:.95;}
+
+/* ── LOADER ─────────────────────────────────────── */
+#loader{position:fixed;inset:0;z-index:9999;background:var(--bg);display:flex;align-items:center;justify-content:center;flex-direction:column;}
+.slats{position:absolute;inset:0;display:flex;flex-direction:column;}
+.slat{flex:1;background:#0e0e0c;border-bottom:1px solid rgba(232,227,216,.04);transform:scaleY(1);transform-origin:top;transition:transform .55s cubic-bezier(.76,0,.24,1);}
+.slat.up{transform:scaleY(0);}
+.loader-content{position:relative;z-index:2;text-align:center;}
+.loader-vc{font-family:var(--D);font-size:clamp(28px,6vw,64px);letter-spacing:.06em;color:var(--ink);}
+.loader-vc .red{color:var(--red);}
+.loader-tag{font-family:var(--M);font-size:10px;letter-spacing:.32em;color:var(--ink-dim);margin-top:6px;text-transform:uppercase;}
+.tach-bar{width:min(380px,68vw);height:2px;background:rgba(232,227,216,.1);margin:28px auto 0;position:relative;overflow:hidden;}
+.tach-fill{position:absolute;inset:0 100% 0 0;background:linear-gradient(90deg,var(--steel),var(--gold) 55%,var(--red));transition:right 1.2s cubic-bezier(.16,1,.3,1);}
+.tach-fill.full{right:0;}
+.tach-rpm{font-family:var(--M);font-size:11px;color:var(--red);margin-top:8px;letter-spacing:.1em;text-align:center;}
+.loader-car{margin:0 auto 20px;opacity:.5;}
+
+/* ── HEADER ─────────────────────────────────────── */
+header{
+  position:fixed;top:0;left:0;right:0;z-index:500;
+  border-bottom:1px solid transparent;
+  transition:border-color .4s,background .4s,padding .35s;
+}
+header.scrolled{
+  background:rgba(14,14,12,.78);
+  backdrop-filter:blur(18px) saturate(140%);
+  -webkit-backdrop-filter:blur(18px) saturate(140%);
+  border-color:var(--hair);
+}
+.nav-wrap{display:flex;align-items:center;justify-content:space-between;padding:24px 0;transition:padding .35s;}
+header.scrolled .nav-wrap{padding:14px 0;}
+
+.brand{font-family:var(--D);font-size:18px;letter-spacing:.06em;text-transform:uppercase;display:flex;align-items:center;gap:9px;}
+.brand-pip{width:7px;height:7px;background:var(--red);border-radius:1px;box-shadow:0 0 12px var(--red);}
+.brand-tag{font-family:var(--M);font-size:9.5px;color:var(--ink-dim);letter-spacing:.12em;border-left:1px solid var(--hair2);padding-left:10px;margin-left:4px;}
+@media(max-width:700px){.brand-tag{display:none;}}
+
+nav{display:flex;gap:2px;}
+.nl{font-family:var(--M);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;padding:9px 15px;color:var(--ink-dim);position:relative;transition:color .25s;}
+.nl::after{content:"";position:absolute;left:15px;right:15px;bottom:4px;height:1px;background:var(--red);transform:scaleX(0);transform-origin:left;transition:transform .3s ease;}
+.nl:hover,.nl.on{color:var(--ink);}
+.nl:hover::after,.nl.on::after{transform:scaleX(1);}
+@media(max-width:860px){nav{display:none;}}
+
+.brgr{display:none;background:none;border:none;cursor:pointer;flex-direction:column;gap:5px;width:26px;}
+.brgr span{height:1.5px;background:var(--ink);width:100%;transition:.3s;}
+.brgr.x span:nth-child(1){transform:translateY(6.5px) rotate(45deg);}
+.brgr.x span:nth-child(2){opacity:0;}
+.brgr.x span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);}
+@media(max-width:860px){.brgr{display:flex;}}
+
+#mmenu{
+  position:fixed;inset:0;background:rgba(10,10,9,.97);z-index:600;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;
+  opacity:0;pointer-events:none;transition:opacity .3s;
+}
+#mmenu.on{opacity:1;pointer-events:auto;}
+.mm-link{font-family:var(--D);font-size:clamp(24px,7vw,42px);text-transform:uppercase;letter-spacing:.03em;padding:10px 0;color:var(--ink-dim);position:relative;overflow:hidden;transition:color .3s;}
+.mm-link::before{content:attr(data-n);position:absolute;left:-32px;font-family:var(--M);font-size:11px;color:var(--red);top:50%;transform:translateY(-50%);opacity:0;transition:opacity .3s;}
+.mm-link:hover{color:var(--ink);}
+.mm-link:hover::before{opacity:1;}
+.mm-ig{font-family:var(--M);font-size:11px;color:var(--steel);letter-spacing:.12em;margin-top:24px;}
+#mmenu .mm-close{position:absolute;top:22px;right:22px;font-family:var(--M);font-size:10px;letter-spacing:.2em;border:1px solid var(--hair2);background:none;color:var(--ink-dim);padding:9px 14px;cursor:pointer;transition:color .2s,border-color .2s;}
+#mmenu .mm-close:hover{color:var(--ink);border-color:var(--red);}
+
+/* ── SIGNATURE BUTTON ─────────────────────────── */
+.btn{
+  font-family:var(--M);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;
+  padding:15px 28px;border:1px solid var(--hair2);background:var(--panel-hi);
+  color:var(--ink);cursor:pointer;position:relative;overflow:hidden;isolation:isolate;
+  box-shadow:inset 1px 1px 0 rgba(255,255,255,.045),inset -1px -1px 0 rgba(0,0,0,.6),2px 2px 8px rgba(0,0,0,.4);
+  transition:box-shadow .3s,transform .25s cubic-bezier(.2,.8,.2,1),color .2s;
+  display:inline-flex;align-items:center;gap:10px;
+}
+.btn.primary{border-color:rgba(255,77,28,.4);}
+/* wave layer */
+.btn .bwave{
+  position:absolute;inset:0;z-index:-1;opacity:0;pointer-events:none;
+  background:linear-gradient(90deg,transparent 0%,rgba(107,147,173,.5) 20%,rgba(191,152,64,.6) 45%,rgba(255,77,28,.7) 65%,rgba(107,147,173,.5) 85%,transparent 100%);
+  background-size:300% 100%;
+  -webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='40'%3E%3Cpath d='M0 20 Q37.5 0 75 20 Q112.5 40 150 20 Q187.5 0 225 20 Q262.5 40 300 20 L300 40 L0 40 Z' fill='white'/%3E%3C/svg%3E");
+  -webkit-mask-size:50% 100%;
+  mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='40'%3E%3Cpath d='M0 20 Q37.5 0 75 20 Q112.5 40 150 20 Q187.5 0 225 20 Q262.5 40 300 20 L300 40 L0 40 Z' fill='white'/%3E%3C/svg%3E");
+  mask-size:50% 100%;
+  transition:opacity .25s;
+}
+/* bottom sweep */
+.btn .bsweep{
+  position:absolute;left:0;right:0;bottom:0;height:1.5px;
+  background:linear-gradient(90deg,transparent,var(--steel) 25%,var(--gold) 50%,var(--red) 75%,transparent);
+  background-size:260% 100%;opacity:0;transition:opacity .25s;
+}
+/* glass sheen */
+.btn .bglass{
+  position:absolute;inset:0;z-index:0;opacity:0;pointer-events:none;
+  background:linear-gradient(120deg,transparent 35%,rgba(255,255,255,.06) 50%,transparent 65%);
+  background-size:260% 100%;transition:opacity .3s;
+}
+.btn:hover,.btn.tap{
+  box-shadow:inset 1px 1px 0 rgba(255,255,255,.03),inset -1px -1px 0 rgba(0,0,0,.7),0 0 24px rgba(255,77,28,.15);
+  transform:translateY(-1.5px);
+}
+.btn:hover .bwave,.btn.tap .bwave{opacity:1;animation:waveroll 2.8s linear infinite;}
+.btn:hover .bsweep,.btn.tap .bsweep{opacity:1;animation:sweepgo 2.2s linear infinite;}
+.btn:hover .bglass,.btn.tap .bglass{opacity:1;animation:glassgo 2.2s linear infinite;}
+@keyframes waveroll{from{background-position:0% 50%;}to{background-position:-300% 50%;}}
+@keyframes sweepgo{from{background-position:0%;}to{background-position:-260%;}  }
+@keyframes glassgo{from{background-position:200%;}to{background-position:-60%;}}
+.btn.sm{padding:10px 18px;font-size:10px;}
+.btn.lg{padding:18px 36px;font-size:13px;}
+
+/* chip */
+.chip{
+  font-family:var(--M);font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+  padding:9px 16px;border:1px solid var(--hair);background:var(--panel);color:var(--ink-dim);
+  cursor:pointer;position:relative;overflow:hidden;
+  box-shadow:inset 1px 1px 1px rgba(255,255,255,.025),inset -1px -1px 2px rgba(0,0,0,.5);
+  transition:.25s;
+}
+.chip .bsweep{position:absolute;left:0;right:0;bottom:0;height:1.5px;background:linear-gradient(90deg,transparent,var(--steel) 25%,var(--gold) 50%,var(--red) 75%,transparent);background-size:260% 100%;opacity:0;}
+.chip.on{color:var(--ink);border-color:rgba(255,77,28,.45);background:rgba(255,77,28,.05);}
+.chip.on .bsweep{opacity:1;animation:sweepgo 2.2s linear infinite;}
+.chip:hover{color:var(--ink);}
+
+/* ── HERO ─────────────────────────────────────── */
+.hero{min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding:130px 0 70px;position:relative;overflow:hidden;}
+.hero-bg-art{position:absolute;right:0;top:0;bottom:0;width:52%;pointer-events:none;overflow:hidden;opacity:.22;}
+.hero-h1{font-size:clamp(44px,9vw,116px);line-height:.93;max-width:1000px;position:relative;z-index:1;}
+.hero-h1 .clip{overflow:hidden;display:block;}
+.hero-h1 .clip .word{display:inline-block;transform:translateY(105%);transition:transform .9s cubic-bezier(.16,1,.3,1);}
+.hero-h1 .clip .word.r{color:var(--red);}
+.hero.loaded .hero-h1 .clip .word{transform:translateY(0);}
+.hero-h1 .clip:nth-child(2) .word{transition-delay:.12s;}
+.hero-sub{font-family:var(--M);font-size:clamp(12px,1.5vw,15px);letter-spacing:.14em;text-transform:uppercase;margin-top:28px;color:var(--ink-dim);display:flex;align-items:center;gap:12px;overflow:hidden;}
+.hero-sub b{color:var(--ink);font-weight:500;transition:opacity .2s;}
+.hero-ctas{display:flex;gap:14px;margin-top:44px;flex-wrap:wrap;position:relative;z-index:1;}
+
+/* spec strip */
+.spec-strip{margin-top:80px;display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid var(--hair);border-left:1px solid var(--hair);}
+@media(max-width:860px){.spec-strip{grid-template-columns:repeat(3,1fr);}}
+@media(max-width:540px){.spec-strip{grid-template-columns:repeat(2,1fr);}}
+.ssc{border-right:1px solid var(--hair);border-bottom:1px solid var(--hair);padding:20px 18px 18px;}
+.ssc .sn{font-family:var(--M);font-size:clamp(18px,2.4vw,26px);color:var(--ink);letter-spacing:.02em;}
+.ssc .sn em{color:var(--red);font-style:normal;}
+.ssc .sl{font-family:var(--M);font-size:9px;letter-spacing:.14em;color:var(--ink-dim);text-transform:uppercase;margin-top:5px;}
+
+/* ── SECTION SCAFFOLD ─────────────────────────── */
+section{padding:120px 0;border-top:1px solid var(--hair);}
+@media(max-width:720px){section{padding:80px 0;}}
+.sh{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:60px;flex-wrap:wrap;}
+.sh h2{font-size:clamp(30px,4.6vw,50px);margin-top:12px;}
+.sh .lede{font-size:14px;color:var(--ink-dim);max-width:360px;line-height:1.6;font-family:var(--B);}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(30px);transition:opacity .75s cubic-bezier(.16,1,.3,1),transform .75s cubic-bezier(.16,1,.3,1);}
+.rv.in{opacity:1;transform:translateY(0);}
+.rv2{opacity:0;transform:translateY(30px);transition:opacity .75s cubic-bezier(.16,1,.3,1) .15s,transform .75s cubic-bezier(.16,1,.3,1) .15s;}
+.rv2.in{opacity:1;transform:translateY(0);}
+.rv3{opacity:0;transform:translateY(30px);transition:opacity .75s cubic-bezier(.16,1,.3,1) .28s,transform .75s cubic-bezier(.16,1,.3,1) .28s;}
+.rv3.in{opacity:1;transform:translateY(0);}
+
+/* ── IDENTITY ─────────────────────────────────── */
+.id-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--hair);border:1px solid var(--hair);}
+@media(max-width:960px){.id-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:500px){.id-grid{grid-template-columns:1fr;}}
+.idc{background:var(--panel);padding:32px 28px;position:relative;overflow:hidden;cursor:default;
+  box-shadow:inset 2px 2px 8px rgba(0,0,0,.35),inset -1px -1px 2px rgba(255,255,255,.02);
+  transition:background .3s;}
+.idc:hover{background:var(--panel-hi);}
+.idc-icon{width:36px;height:36px;margin-bottom:18px;}
+.idc-num{font-family:var(--M);font-size:10px;color:var(--red);letter-spacing:.18em;margin-bottom:12px;}
+.idc h3{font-size:clamp(18px,1.8vw,22px);line-height:1;}
+.idc p{font-family:var(--B);font-size:13px;color:var(--ink-dim);margin-top:10px;line-height:1.58;}
+.idc-glow{position:absolute;inset:0;opacity:0;transition:opacity .3s;
+  background:radial-gradient(circle at 0% 100%, rgba(255,77,28,.09) 0%, transparent 65%);}
+.idc:hover .idc-glow{opacity:1;}
+/* sweep border on hover */
+.idc::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1.5px;
+  background:linear-gradient(90deg,transparent,var(--red),transparent);opacity:0;transition:opacity .3s;}
+.idc:hover::after{opacity:1;}
+
+/* ── SKILLS / DYNO ─────────────────────────────── */
+.skill-list{display:flex;flex-direction:column;gap:0;}
+.skr{border-bottom:1px solid var(--hair);padding:22px 0;display:grid;grid-template-columns:220px 1fr 64px;gap:24px;align-items:center;}
+@media(max-width:640px){.skr{grid-template-columns:1fr;gap:10px;}}
+.skr-name{font-family:var(--D);font-size:20px;text-transform:uppercase;}
+.skr-track{height:5px;background:rgba(232,227,216,.06);position:relative;overflow:hidden;}
+.skr-fill{position:absolute;top:0;left:0;bottom:0;width:0%;
+  background:linear-gradient(90deg,var(--steel) 0%,var(--gold) 50%,var(--red) 100%);
+  background-size:200% 100%;
+  transition:width 1.5s cubic-bezier(.16,1,.3,1);}
+.skr.in .skr-fill{animation:gradshift 3s linear infinite;}
+@keyframes gradshift{from{background-position:0%;}to{background-position:-200%;}}
+.skr-n{font-family:var(--M);font-size:12px;color:var(--ink-dim);text-align:right;}
+
+/* ── GARAGE ─────────────────────────────────────── */
+.filter-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:44px;}
+.g-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+@media(max-width:960px){.g-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:580px){.g-grid{grid-template-columns:1fr;}}
+.gcard{border:1px solid var(--hair);background:var(--panel);position:relative;overflow:hidden;
+  transition:transform .35s cubic-bezier(.2,.8,.2,1),border-color .3s;
+  opacity:0;transform:translateY(20px) scale(.98);}
+.gcard.in{opacity:1;transform:translateY(0) scale(1);transition:opacity .55s cubic-bezier(.16,1,.3,1),transform .55s cubic-bezier(.16,1,.3,1),border-color .3s;}
+.gcard:hover{transform:translateY(-4px);border-color:rgba(255,77,28,.35);}
+.gthumb{aspect-ratio:16/10;position:relative;overflow:hidden;background:var(--bg2);}
+.gthumb svg{width:100%;height:100%;}
+.gthumb .gcbadge{position:absolute;top:10px;left:10px;font-family:var(--M);font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;background:rgba(10,10,9,.8);border:1px solid var(--hair2);padding:4px 9px;color:var(--ink-dim);}
+.gthumb .hover-overlay{position:absolute;inset:0;background:rgba(10,10,9,.65);backdrop-filter:blur(4px);opacity:0;transition:opacity .3s;display:flex;align-items:center;justify-content:center;}
+.gcard:hover .hover-overlay{opacity:1;}
+.gplate{padding:18px 18px 20px;border-top:1px solid var(--hair);}
+.gplate .gt{font-family:var(--D);font-size:18px;text-transform:uppercase;letter-spacing:.01em;}
+.gplate .gd{font-family:var(--B);font-size:12.5px;color:var(--ink-dim);margin-top:6px;line-height:1.55;}
+.tags{display:flex;gap:5px;flex-wrap:wrap;margin-top:12px;}
+.tag{font-family:var(--M);font-size:8.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-dim);border:1px solid var(--hair);padding:3px 7px;}
+.gplate .btn{margin-top:16px;width:100%;justify-content:center;}
+
+/* ── PROCESS ─────────────────────────────────────── */
+.proc-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:0;border:1px solid var(--hair);}
+@media(max-width:860px){.proc-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:500px){.proc-grid{grid-template-columns:1fr;}}
+.proc-step{padding:28px 22px;border-right:1px solid var(--hair);position:relative;overflow:hidden;}
+.proc-step:last-child{border-right:none;}
+@media(max-width:860px){.proc-step{border-bottom:1px solid var(--hair);}}
+.proc-n{font-family:var(--M);font-size:11px;color:var(--red);letter-spacing:.14em;margin-bottom:14px;}
+.proc-step h4{font-size:17px;line-height:1;}
+.proc-step p{font-family:var(--B);font-size:12.5px;color:var(--ink-dim);margin-top:8px;line-height:1.55;}
+.proc-step::after{content:"";position:absolute;bottom:0;left:0;right:0;height:1.5px;background:linear-gradient(90deg,var(--red),transparent);opacity:0;transition:opacity .3s;}
+.proc-step:hover::after{opacity:1;}
+.proc-arrow{position:absolute;top:28px;right:16px;font-family:var(--M);font-size:14px;color:var(--hair2);}
+@media(max-width:860px){.proc-arrow{display:none;}}
+
+/* ── THE DESK ─────────────────────────────────────── */
+.desk-grid{display:grid;grid-template-columns:1.15fr 1fr;gap:20px;}
+@media(max-width:880px){.desk-grid{grid-template-columns:1fr;}}
+.dp{border:1px solid var(--hair);background:var(--panel);padding:26px;
+  box-shadow:inset 2px 2px 8px rgba(0,0,0,.35),inset -1px -1px 2px rgba(255,255,255,.02);}
+.dp-head{display:flex;justify-content:space-between;align-items:flex-start;}
+.dp h3{font-size:15px;letter-spacing:.07em;}
+.dp-tag{font-family:var(--M);font-size:9.5px;color:var(--ink-dim);letter-spacing:.1em;margin-top:5px;}
+.dp-live{font-family:var(--M);font-size:9px;color:var(--red);letter-spacing:.14em;display:flex;align-items:center;gap:5px;}
+.dp-live::before{content:"";width:5px;height:5px;background:var(--red);border-radius:50%;animation:pulse 1.4s ease-in-out infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.3;}}
+.chart-svg{width:100%;margin-top:18px;}
+.ticker{font-family:var(--M);font-size:13px;color:var(--gold);margin-top:8px;letter-spacing:.04em;}
+.ticker span{font-size:11px;color:var(--ink-dim);}
+/* console */
+.console{font-family:var(--M);font-size:12px;line-height:2;margin-top:16px;color:var(--ink-dim);}
+.console .c-prompt{color:var(--steel);}
+.console .c-ok{color:var(--ink);}
+.console .c-val{color:var(--gold);}
+.console .c-err{color:var(--red);}
+.caret{display:inline-block;width:7px;height:13px;background:var(--red);vertical-align:middle;animation:blink 1s step-end infinite;}
+@keyframes blink{50%{opacity:0;}}
+
+/* ── MARQUEE ─────────────────────────────────────── */
+.mq-outer{overflow:hidden;border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);padding:24px 0;}
+.mq-track{display:flex;gap:64px;width:max-content;animation:mq 28s linear infinite;}
+.mq-outer:hover .mq-track{animation-play-state:paused;}
+.mq-item{font-family:var(--M);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-dim);white-space:nowrap;display:flex;align-items:center;gap:10px;}
+.mq-item::after{content:"·";color:var(--red);}
+@keyframes mq{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+/* ── CONTACT ─────────────────────────────────────── */
+.con-grid{display:grid;grid-template-columns:1fr 1fr;gap:52px;}
+@media(max-width:840px){.con-grid{grid-template-columns:1fr;}}
+.field{margin-bottom:20px;}
+.field label{display:block;font-family:var(--M);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-dim);margin-bottom:8px;}
+.field input,.field textarea,.field select{
+  width:100%;background:var(--panel);border:1px solid var(--hair);color:var(--ink);
+  font-family:var(--B);font-size:13.5px;padding:13px 15px;
+  box-shadow:inset 2px 2px 6px rgba(0,0,0,.45),inset -1px -1px 1px rgba(255,255,255,.02);
+  transition:border-color .25s,box-shadow .25s;
+}
+.field input:focus,.field textarea:focus,.field select:focus{
+  outline:none;border-color:var(--red);box-shadow:inset 2px 2px 6px rgba(0,0,0,.45),0 0 0 3px rgba(255,77,28,.1);
+}
+.field textarea{resize:vertical;min-height:130px;}
+.field select option{background:var(--panel);}
+.reg-card{border:1px solid var(--hair2);padding:26px;font-family:var(--M);font-size:12px;color:var(--ink-dim);line-height:2.1;
+  box-shadow:inset 2px 2px 6px rgba(0,0,0,.35);}
+.reg-card b{color:var(--ink);font-weight:500;}
+.reg-card a{color:var(--steel);transition:color .2s;}
+.reg-card a:hover{color:var(--ink);}
+.soc-row{display:flex;gap:10px;margin-top:22px;flex-wrap:wrap;}
+
+/* FOOTER */
+footer{border-top:1px solid var(--hair);padding:40px 0;}
+.ft-rule{height:1px;background:linear-gradient(90deg,transparent,var(--red) 40%,var(--gold) 60%,transparent);opacity:.4;margin-bottom:30px;}
+.ft-row{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;}
+.ft-t{font-family:var(--M);font-size:9.5px;letter-spacing:.12em;color:var(--ink-dim);text-transform:uppercase;}
+.ft-ig{color:var(--steel);}
+
+/* reduced motion */
+@media(prefers-reduced-motion:reduce){
+  *{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.15s !important;}
+  .mq-track{animation:none;}
+  .btn .bwave,.btn .bsweep,.btn .bglass,.chip .bsweep{display:none;}
+}
+</style>
+</head>
+<body>
+
+<!-- CUSTOM CURSOR -->
+<div id="cur"></div>
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="slats" id="slats"></div>
+  <div class="loader-content">
+    <svg class="loader-car" width="220" height="60" viewBox="0 0 220 60" fill="none">
+      <path d="M20 42 L30 42 L34 24 Q40 14 55 12 L95 10 Q110 8 120 16 L145 30 L170 32 L185 36 L190 42 L200 42" stroke="#E8E3D8" stroke-width="1.5" fill="none" opacity="0.6" stroke-dasharray="300" stroke-dashoffset="300" id="carPath"/>
+      <circle cx="55" cy="44" r="8" stroke="#FF4D1C" stroke-width="1.5" fill="none"/>
+      <circle cx="55" cy="44" r="3" fill="#FF4D1C" opacity="0.6"/>
+      <circle cx="170" cy="44" r="8" stroke="#FF4D1C" stroke-width="1.5" fill="none"/>
+      <circle cx="170" cy="44" r="3" fill="#FF4D1C" opacity="0.6"/>
+    </svg>
+    <div class="loader-vc">VERSATILE<span class="red"> CARZ</span></div>
+    <div class="loader-tag">Compiling Build Sheet</div>
+    <div class="tach-bar"><div class="tach-fill" id="tachFill"></div></div>
+    <div class="tach-rpm" id="rpmOut">0000 RPM</div>
+  </div>
+</div>
+
+<!-- MOBILE MENU -->
+<div id="mmenu">
+  <button class="mm-close" id="mmClose">CLOSE ✕</button>
+  <a class="mm-link" href="#identity" data-n="01">Identity</a>
+  <a class="mm-link" href="#spec" data-n="02">Spec Sheet</a>
+  <a class="mm-link" href="#garage" data-n="03">Garage</a>
+  <a class="mm-link" href="#process" data-n="04">Process</a>
+  <a class="mm-link" href="#desk" data-n="05">The Desk</a>
+  <a class="mm-link" href="#contact" data-n="06">Contact</a>
+  <a class="mm-ig" href="https://www.instagram.com/versatile_carz/" target="_blank" rel="noopener">↗ @versatile_carz</a>
+</div>
+
+<!-- HEADER -->
+<header id="hdr">
+  <div class="w nav-wrap">
+    <a href="#top" class="brand">
+      <span class="brand-pip"></span>
+      VERSATILE CARZ
+      <span class="brand-tag">ALL SKILLS</span>
+    </a>
+    <nav id="pnav">
+      <a class="nl" href="#identity" data-s="identity">Identity</a>
+      <a class="nl" href="#spec" data-s="spec">Spec Sheet</a>
+      <a class="nl" href="#garage" data-s="garage">Garage</a>
+      <a class="nl" href="#process" data-s="process">Process</a>
+      <a class="nl" href="#desk" data-s="desk">The Desk</a>
+      <a class="nl" href="#contact" data-s="contact">Contact</a>
+    </nav>
+    <button class="brgr" id="brgr" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ───────────── MAIN ───────────── -->
+<main id="top">
+
+<!-- HERO -->
+<section class="hero" id="identity" style="border-top:none;padding-top:140px;">
+  <!-- background SVG art: speed lines + HUD circle -->
+  <div class="hero-bg-art" aria-hidden="true">
+    <svg viewBox="0 0 600 700" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;position:absolute;top:0;right:0;">
+      <circle cx="480" cy="320" r="260" stroke="#FF4D1C" stroke-width=".8" opacity=".35"/>
+      <circle cx="480" cy="320" r="180" stroke="#6B93AD" stroke-width=".6" opacity=".25"/>
+      <circle cx="480" cy="320" r="80" stroke="#BF9840" stroke-width=".5" opacity=".2"/>
+      <!-- tick marks -->
+      <g opacity=".3" stroke="#E8E3D8" stroke-width=".6">
+        <line x1="480" y1="60" x2="480" y2="80"/><line x1="480" y1="560" x2="480" y2="580"/>
+        <line x1="220" y1="320" x2="240" y2="320"/><line x1="720" y1="320" x2="740" y2="320"/>
+        <line x1="296" y1="136" x2="310" y2="150"/><line x1="664" y1="136" x2="650" y2="150"/>
+        <line x1="296" y1="504" x2="310" y2="490"/><line x1="664" y1="504" x2="650" y2="490"/>
+      </g>
+      <!-- chart line -->
+      <polyline points="120,560 180,490 250,510 320,400 400,420 460,300 520,290 580,200 640,180" stroke="#BF9840" stroke-width="1.5" fill="none" opacity=".55"/>
+      <!-- horizontal speed lines -->
+      <line x1="0" y1="420" x2="160" y2="420" stroke="#FF4D1C" stroke-width=".7" opacity=".3"/>
+      <line x1="0" y1="430" x2="100" y2="430" stroke="#FF4D1C" stroke-width=".4" opacity=".2"/>
+      <line x1="0" y1="440" x2="130" y2="440" stroke="#FF4D1C" stroke-width=".5" opacity=".15"/>
+    </svg>
+  </div>
+
+  <div class="w">
+    <div class="eyebrow rv" style="margin-bottom:20px;">BUILD SHEET — ONE OPERATOR / FIVE SKILLS</div>
+    <h1 class="hero-h1">
+      <span class="clip"><span class="word">ONE BUILD.</span></span>
+      <span class="clip"><span class="word r">FIVE SKILLS.</span></span>
+    </h1>
+    <div class="hero-sub rv2">
+      <span>RUNNING:</span>
+      <b id="rotWord">ECOMMERCE DESIGN</b>
+    </div>
+    <div class="hero-ctas rv3">
+      <button class="btn primary lg" onclick="document.getElementById('garage').scrollIntoView({behavior:'smooth'})">
+        Open Garage
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+        <span class="bwave"></span><span class="bsweep"></span><span class="bglass"></span>
+      </button>
+      <button class="btn lg" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+        Request Intake
+        <span class="bwave"></span><span class="bsweep"></span><span class="bglass"></span>
+      </button>
+    </div>
+
+    <!-- SPEC STRIP -->
+    <div class="spec-strip rv" style="margin-top:90px;">
+      <div class="ssc"><div class="sn" data-count="3300" data-suf="+">0+</div><div class="sl">Stores Shipped · 8 years</div></div>
+      <div class="ssc"><div class="sn" data-count="32" data-pre="+" data-suf="%">0%</div><div class="sl">Avg CRO Lift</div></div>
+      <div class="ssc"><div class="sn">5<em>/5</em></div><div class="sl">Active Skills</div></div>
+      <div class="ssc"><div class="sn">9 PM</div><div class="sl">Daily Chart Read</div></div>
+      <div class="ssc"><div class="sn"><em>@</em>vcarz</div><div class="sl">Field Notes / IG</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SPEC / SKILLS -->
+<section id="spec">
+  <div class="w">
+    <div class="sh rv">
+      <div>
+        <div class="eyebrow">SPEC 01 — SKILLS</div>
+        <h2>What's Under<br>The Hood</h2>
+      </div>
+      <p class="lede">Five lanes, one operator. EcoVM Brand Day and Scannavers store landing page feed the Copy Prompt Engine line — every project connected as one launch system.</p>
+    </div>
+
+    <div class="id-grid rv2">
+      <!-- Ecom -->
+      <div class="idc">
+        <div class="idc-glow"></div>
+        <div class="idc-num">DISC. 01</div>
+        <svg class="idc-icon" viewBox="0 0 36 36" fill="none">
+          <rect x="4" y="10" width="28" height="20" rx="1" stroke="#FF4D1C" stroke-width="1.2"/>
+          <path d="M12 10V8a6 6 0 0 1 12 0v2" stroke="#FF4D1C" stroke-width="1.2"/>
+          <path d="M4 18h28" stroke="#FF4D1C" stroke-width=".8" opacity=".5"/>
+          <circle cx="13" cy="24" r="1.5" fill="#FF4D1C" opacity=".7"/>
+          <circle cx="23" cy="24" r="1.5" fill="#FF4D1C" opacity=".7"/>
+        </svg>
+        <h3>Ecom Design</h3>
+        <p>Shopify &amp; headless storefronts built for conversion — fast, mobile-first, merchandised to sell.</p>
+      </div>
+      <!-- Automotive -->
+      <div class="idc">
+        <div class="idc-glow"></div>
+        <div class="idc-num">DISC. 02</div>
+        <svg class="idc-icon" viewBox="0 0 36 36" fill="none">
+          <path d="M4 22 L7 22 L9 16 Q12 10 17 9 L24 9 Q28 9 30 14 L32 22 L33 22" stroke="#FF4D1C" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+          <circle cx="11" cy="24" r="3" stroke="#FF4D1C" stroke-width="1.2"/>
+          <circle cx="25" cy="24" r="3" stroke="#FF4D1C" stroke-width="1.2"/>
+          <path d="M14 22 L22 22" stroke="#FF4D1C" stroke-width=".8" opacity=".5"/>
+        </svg>
+        <h3>Automotive Craft</h3>
+        <p>Builds, mods, and detail documented with the same precision as a factory spec sheet.</p>
+      </div>
+      <!-- PromptOps -->
+      <div class="idc">
+        <div class="idc-glow"></div>
+        <div class="idc-num">DISC. 03</div>
+        <svg class="idc-icon" viewBox="0 0 36 36" fill="none">
+          <rect x="4" y="6" width="28" height="24" rx="1" stroke="#FF4D1C" stroke-width="1.2"/>
+          <path d="M9 14 L14 18 L9 22" stroke="#FF4D1C" stroke-width="1.3" stroke-linecap="round"/>
+          <path d="M16 22 L27 22" stroke="#FF4D1C" stroke-width="1.1" opacity=".6"/>
+        </svg>
+        <h3>PromptOps</h3>
+        <p>Production-grade AI systems — versioned, tested, and tuned like an engine map.</p>
+      </div>
+      <!-- Forex + Marketing -->
+      <div class="idc">
+        <div class="idc-glow"></div>
+        <div class="idc-num">DISC. 04 — 05</div>
+        <svg class="idc-icon" viewBox="0 0 36 36" fill="none">
+          <polyline points="4,28 10,20 16,23 22,12 28,16 34,6" stroke="#FF4D1C" stroke-width="1.3" fill="none" stroke-linecap="round"/>
+          <circle cx="28" cy="16" r="2" fill="#BF9840"/>
+          <circle cx="22" cy="12" r="2" fill="#BF9840"/>
+        </svg>
+        <h3>Forex &amp; Marketing</h3>
+        <p>TA-led execution across majors, plus cross-channel growth strategy and brand campaigns.</p>
+      </div>
+    </div>
+
+    <!-- SKILLS DYNO -->
+    <div style="margin-top:72px;">
+      <div class="eyebrow rv" style="margin-bottom:28px;">SPEC 02 — CAPABILITY DYNO</div>
+      <div class="skill-list">
+        <div class="skr"><div class="skr-name">E-commerce / Shopify</div><div class="skr-track"><div class="skr-fill" data-p="92"></div></div><div class="skr-n">92%</div></div>
+        <div class="skr"><div class="skr-name">UI / Web Design</div><div class="skr-track"><div class="skr-fill" data-p="88"></div></div><div class="skr-n">88%</div></div>
+        <div class="skr"><div class="skr-name">Prompt Engineering</div><div class="skr-track"><div class="skr-fill" data-p="85"></div></div><div class="skr-n">85%</div></div>
+        <div class="skr"><div class="skr-name">Forex / Tech Analysis</div><div class="skr-track"><div class="skr-fill" data-p="80"></div></div><div class="skr-n">80%</div></div>
+        <div class="skr"><div class="skr-name">Brand &amp; Growth Mktg</div><div class="skr-track"><div class="skr-fill" data-p="84"></div></div><div class="skr-n">84%</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GARAGE / WORK -->
+<section id="garage">
+  <div class="w">
+    <div class="sh rv">
+      <div>
+        <div class="eyebrow">SPEC 03 — THE GARAGE</div>
+        <h2>Logged Builds</h2>
+      </div>
+      <p class="lede">A running log of stores, designs, prompt systems and builds. Swap in your photos and links inside the BUILDS array in the script.</p>
+    </div>
+    <div class="filter-row rv" id="filterRow">
+      <button class="chip on" data-f="all">All<span class="bsweep"></span></button>
+      <button class="chip" data-f="ecom">Ecom Stores<span class="bsweep"></span></button>
+      <button class="chip" data-f="web design">Web Design<span class="bsweep"></span></button>
+      <button class="chip" data-f="prompt">PromptOps<span class="bsweep"></span></button>
+      <button class="chip" data-f="trading">Trading<span class="bsweep"></span></button>
+      <button class="chip" data-f="marketing">Marketing<span class="bsweep"></span></button>
+    </div>
+    <div class="g-grid" id="garageGrid"></div>
+    <div class="contact-build-cta" style="margin-top:2rem; text-align:center;">
+      <a class="switch-btn btn-large" href="contact.html">Contact for Other Existing Builds</a>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE — between garage and process -->
+<div class="mq-outer" style="margin:0;">
+  <div class="mq-track" id="mqTrack"></div>
+</div>
+
+<!-- PROCESS -->
+<section id="process">
+  <div class="w">
+    <div class="sh rv">
+      <div>
+        <div class="eyebrow">SPEC 04 — WORKFLOW</div>
+        <h2>How A Build<br>Gets Done</h2>
+      </div>
+      <p class="lede">Every engagement — store, campaign, prompt system, or car build — runs through the same five-stage sequence.</p>
+    </div>
+    <div class="proc-grid rv2">
+      <div class="proc-step">
+        <div class="proc-n">01 / INTAKE</div>
+        <h4>Brief &amp; Scope</h4>
+        <p>Objectives, constraints, and audience defined before a single pixel or prompt is written.</p>
+        <span class="proc-arrow">→</span>
+      </div>
+      <div class="proc-step">
+        <div class="proc-n">02 / RESEARCH</div>
+        <h4>Market &amp; Tech Read</h4>
+        <p>Competitor landscape, channel analysis, and technical audit — the dyno run before the build.</p>
+        <span class="proc-arrow">→</span>
+      </div>
+      <div class="proc-step">
+        <div class="proc-n">03 / BUILD</div>
+        <h4>Design &amp; Engineer</h4>
+        <p>Store, prompt pipeline, campaign, or creative — built modularly for easy future upgrades.</p>
+        <span class="proc-arrow">→</span>
+      </div>
+      <div class="proc-step">
+        <div class="proc-n">04 / TEST</div>
+        <h4>QA &amp; Validate</h4>
+        <p>A/B, split-test, or back-test. Nothing ships without a measured baseline.</p>
+        <span class="proc-arrow">→</span>
+      </div>
+      <div class="proc-step">
+        <div class="proc-n">05 / LAUNCH</div>
+        <h4>Deploy &amp; Monitor</h4>
+        <p>Ship, track, and iterate. The build log stays open — post-launch refinement is part of the job.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THE DESK -->
+<section id="desk">
+  <div class="w">
+    <div class="sh rv">
+      <div>
+        <div class="eyebrow">SPEC 05 — THE DESK</div>
+        <h2>Charts &amp; Consoles</h2>
+      </div>
+      <p class="lede">Where the trading and prompt-engineering sides of the build actually live, day to day.</p>
+    </div>
+    <div class="desk-grid rv2">
+      <div class="dp">
+        <div class="dp-head">
+          <div>
+            <h3>TRADE LOG</h3>
+            <div class="dp-tag">EUR/USD · 4H · DISCRETIONARY + TA</div>
+          </div>
+          <div class="dp-live">LIVE</div>
+        </div>
+        <svg id="cChart" class="chart-svg" viewBox="0 0 520 200" height="200"></svg>
+        <div class="ticker">1.0842 <span>▲ +0.12% · SESSION HIGH 1.0869</span></div>
+      </div>
+      <div class="dp">
+        <div class="dp-head">
+          <div>
+            <h3>PROMPT CONSOLE</h3>
+            <div class="dp-tag">PIPELINE v2.3 · ECOM-LAUNCH</div>
+          </div>
+          <div class="dp-live">ACTIVE</div>
+        </div>
+        <div class="console">
+          <div><span class="c-prompt">$ </span>init session("ecom-launch-copy")</div>
+          <div><span class="c-prompt">→ </span><span class="c-ok">loading brand_voice.yaml</span> <span class="c-val">ok</span></div>
+          <div><span class="c-prompt">→ </span><span class="c-ok">chain: research → draft → critique → polish</span></div>
+          <div><span class="c-prompt">→ </span><span class="c-val">tone_match: 96% · tokens: 1,840</span></div>
+          <div><span class="c-prompt">→ </span><span class="c-ok">output validated</span> <span class="c-val">·</span> <span class="c-ok">deploying</span></div>
+          <div><span class="c-prompt">$ </span><span class="caret"></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="w">
+    <div class="sh rv">
+      <div>
+        <div class="eyebrow">SPEC 06 — INTAKE FORM</div>
+        <h2>Start A Build</h2>
+      </div>
+      <p class="lede">Tell me what you're building — a store, a campaign, a prompt system, or something that doesn't fit a category yet.</p>
+    </div>
+    <div class="con-grid">
+      <form id="intakeForm" onsubmit="return handleSubmit(event)" class="rv">
+        <div class="field"><label for="fn">Name</label><input id="fn" type="text" required placeholder="Your name"></div>
+        <div class="field"><label for="fe">Email</label><input id="fe" type="email" required placeholder="you@domain.com"></div>
+        <div class="field"><label for="ft">Project Type</label>
+          <select id="ft">
+            <option>Ecom Store Build</option><option>Web Design</option>
+            <option>PromptOps System</option><option>Trading Consult</option>
+            <option>Brand &amp; Marketing</option><option>Something Else</option>
+          </select>
+        </div>
+        <div class="field"><label for="fm">Message</label><textarea id="fm" required placeholder="What are we building?"></textarea></div>
+        <button class="btn primary" type="submit" id="submitBtn">
+          Submit Intake
+          <span class="bwave"></span><span class="bsweep"></span><span class="bglass"></span>
+        </button>
+      </form>
+      <div class="rv2">
+        <div class="reg-card">
+          <div><b>OPERATOR</b> // Versatile Carz</div>
+          <div><b>SKILLS</b> // Ecom · Design · PromptOps · Forex · Mktg</div>
+          <div><b>AVAILABILITY</b> // Remote engagements open</div>
+          <div><b>FIELD NOTES</b> // <a href="https://www.youtube.com/@Versatile_carz" target="_blank" rel="noopener">@versatile_carz ↗</a></div>
+          <div><b>RESPONSE</b> // Within 24 hours</div>
+        </div>
+        <div class="soc-row">
+          <a class="btn sm" href="https://www.instagram.com/versatile_carz/" target="_blank" rel="noopener">Instagram ↗<span class="bwave"></span><span class="bsweep"></span><span class="bglass"></span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="w">
+    <div class="ft-rule"></div>
+    <div class="ft-row">
+      <div class="ft-t">Versatile Carz — Build Sheet Rev. 2024</div>
+      <div class="ft-t">© <span id="yr"></span> All Skills Reserved · <a class="ft-ig" href="https://www.instagram.com/versatile_carz/" target="_blank" rel="noopener">@versatile_carz</a></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ─────────────────────────────────────────
+   BUILDS — edit me freely
+   To add a build: copy an object, fill in your
+   img (path or URL; leave "" for the auto-art),
+   link, title, desc, tags, category.
+   Categories: ecom | design | prompt | trading | marketing
+───────────────────────────────────────── */
+const BUILDS = [
+  {
+    title:"Scanovus Store",
+    category:"ecom",
+    img:"",
+    desc:"A high-conversion store build for Scanovus with polished product presentation and simplified checkout flow.",
+    link:"https://scanovus.com/en?srsltid=AfmBOor_gWNiHK-viLACk3Sn-HQt88XHgh23L6yEOkMUWOI3Q84Dvm_a",
+    tags:["Shopify","Brand Day","CRO"],
+    art:"store"
+  },
+  {
+    title:"Open House",
+    category:"design",
+    img:"",
+    desc:"Open House website built for modern brand clarity, with a marketing-friendly visual system and smooth UX.",
+    link:"https://openhouse.my",
+    tags:["Web Design","Marketing"],
+    art:"design"
+  },
+  {
+    title:"PromptOps Engine Line",
+    category:"prompt",
+    img:"",
+    desc:"Prompt-engineered copy pipeline for product and landing messaging across EcoVM and Scannavers builds.",
+    link:"promptops.html",
+    tags:["PromptOps","Copy","Automation"],
+    art:"prompt"
+  },
+  {
+    title:"EUR/USD Swing Log Q3",
+    category:"trading",
+    img:"",
+    desc:"Quarterly swing trade log: structure identification, entry criteria, and post-trade review.",
+    link:"eurusd-q3.html",
+    tags:["Forex","Technical Analysis","Risk Mgmt"],
+    art:"chart"
+  },
+  {
+    title:"Elite Eleven",
+    category:"marketing",
+    img:"",
+    desc:"Brand and social launch project for Elite Eleven with a web design focus and marketing-led creative execution.",
+    link:"https://eliteelevensporting.com/?utm_source=ig&utm_medium=social&utm_content=link_in_bio",
+    tags:["Web Design","Marketing"],
+    art:"campaign"
+  },
+  {
+    title:"GYMROOS",
+    category:"design",
+    img:"",
+    desc:"Logged website build for GYMROOS with a marketing-ready web design and Instagram link focus.",
+    link:"https://gymroos.com.au/?utm_source=ig&utm_medium=social&utm_content=link_in_bio",
+    tags:["Web Design"],
+    art:"design"
+  },
+  {
+    title:"Axiron01 Prototype",
+    category:"design",
+    img:"",
+    desc:"Documented restoration and mod log — the car side of the build sheet, spec'd precisely.",
+    link:"axiron01.html",
+    tags:["Automotive","Builds","Detail"],
+    art:"car"
+  },
+];
+
+/* ─── SVG placeholder art per card type ─── */
+function thumbArt(type){
+  const arts = {
+    ig:`<rect width="100%" height="100%" fill="#1a1512"/>
+        <circle cx="50%" cy="48%" r="28%" stroke="#FF4D1C" stroke-width="1" fill="none" opacity=".5"/>
+        <circle cx="50%" cy="48%" r="18%" stroke="#BF9840" stroke-width=".7" fill="none" opacity=".4"/>
+        <circle cx="50%" cy="48%" r="6%" fill="#FF4D1C" opacity=".6"/>
+        <text x="50%" y="82%" text-anchor="middle" font-family="IBM Plex Mono" font-size="11" fill="#8a857a" letter-spacing="3">@VERSATILE_CARZ</text>`,
+    store:`<rect width="100%" height="100%" fill="#121815"/>
+        <rect x="22%" y="20%" width="56%" height="44%" rx="2" stroke="#6B93AD" stroke-width="1" fill="none" opacity=".6"/>
+        <line x1="22%" y1="35%" x2="78%" y2="35%" stroke="#6B93AD" stroke-width=".6" opacity=".4"/>
+        <rect x="35%" y="42%" width="30%" height="8%" fill="#FF4D1C" opacity=".35" rx="1"/>
+        <text x="50%" y="80%" text-anchor="middle" font-family="IBM Plex Mono" font-size="10" fill="#6B93AD" letter-spacing="2">ECOM STORE</text>`,
+    design:`<rect width="100%" height="100%" fill="#131318"/>
+        <circle cx="30%" cy="40%" r="22%" stroke="#BF9840" stroke-width=".8" fill="none" opacity=".4"/>
+        <rect x="52%" y="22%" width="28%" height="38%" stroke="#FF4D1C" stroke-width=".8" fill="none" opacity=".5"/>
+        <line x1="15%" y1="70%" x2="85%" y2="70%" stroke="#E8E3D8" stroke-width=".4" opacity=".2"/>
+        <text x="50%" y="85%" text-anchor="middle" font-family="IBM Plex Mono" font-size="10" fill="#8a857a" letter-spacing="2">WEB DESIGN</text>`,
+    prompt:`<rect width="100%" height="100%" fill="#111214"/>
+        <rect x="12%" y="18%" width="76%" height="60%" rx="2" stroke="#6B93AD" stroke-width=".8" fill="rgba(107,147,173,0.04)" opacity=".7"/>
+        <text x="18%" y="36%" font-family="IBM Plex Mono" font-size="9" fill="#6B93AD" opacity=".8">$ init pipeline()</text>
+        <text x="18%" y="48%" font-family="IBM Plex Mono" font-size="9" fill="#BF9840" opacity=".7">→ chain: 4 steps</text>
+        <text x="18%" y="60%" font-family="IBM Plex Mono" font-size="9" fill="#FF4D1C" opacity=".8">→ validated ✓</text>
+        <text x="18%" y="72%" font-family="IBM Plex Mono" font-size="9" fill="#8a857a" opacity=".6">$ _</text>`,
+    chart:`<rect width="100%" height="100%" fill="#111310"/>
+        <polyline points="10%,72% 22%,55% 30%,60% 42%,38% 52%,44% 65%,28% 76%,32% 90%,18%" stroke="#BF9840" stroke-width="1.5" fill="none" opacity=".7"/>
+        <line x1="10%" y1="80%" x2="90%" y2="80%" stroke="#E8E3D8" stroke-width=".4" opacity=".15"/>
+        <circle cx="90%" cy="18%" r="3" fill="#FF4D1C" opacity=".9"/>
+        <text x="50%" y="92%" text-anchor="middle" font-family="IBM Plex Mono" font-size="10" fill="#BF9840" letter-spacing="2">EUR/USD · 4H</text>`,
+    campaign:`<rect width="100%" height="100%" fill="#141210"/>
+        <circle cx="25%" cy="45%" r="14%" stroke="#FF4D1C" stroke-width=".8" fill="none" opacity=".5"/>
+        <circle cx="50%" cy="45%" r="14%" stroke="#BF9840" stroke-width=".8" fill="none" opacity=".5"/>
+        <circle cx="75%" cy="45%" r="14%" stroke="#6B93AD" stroke-width=".8" fill="none" opacity=".5"/>
+        <text x="50%" y="82%" text-anchor="middle" font-family="IBM Plex Mono" font-size="10" fill="#8a857a" letter-spacing="2">CROSS-CHANNEL</text>`,
+    car:`<rect width="100%" height="100%" fill="#141410"/>
+        <path d="M 10%,65% L 15%,65% L 17%,52% Q 22%,38% 32%,36% L 52%,34% Q 62%,33% 68%,42% L 80%,58% L 85%,62% L 90%,65%" stroke="#FF4D1C" stroke-width="1.5" fill="none" opacity=".7"/>
+        <circle cx="28%" cy="68%" r="7%" stroke="#BF9840" stroke-width="1" fill="none" opacity=".7"/>
+        <circle cx="72%" cy="68%" r="7%" stroke="#BF9840" stroke-width="1" fill="none" opacity=".7"/>
+        <text x="50%" y="88%" text-anchor="middle" font-family="IBM Plex Mono" font-size="10" fill="#8a857a" letter-spacing="2">BUILD LOG</text>`,
+  };
+  return arts[type] || arts.store;
+}
+
+/* ─── Render garage ─── */
+const grid = document.getElementById('garageGrid');
+function buildMatchesFilter(build, filter){
+  if(filter === 'all') return true;
+  if(build.category === filter) return true;
+  const term = filter.toLowerCase();
+  return build.tags.some(tag => tag.toLowerCase().includes(term));
+}
+
+function renderGarage(filter){
+  grid.innerHTML = '';
+  let delay = 0;
+  BUILDS.forEach(b => {
+    if(!buildMatchesFilter(b, filter)) return;
+    const c = document.createElement('div');
+    c.className = 'gcard';
+    c.style.transitionDelay = delay + 'ms';
+    c.innerHTML = `
+      <div class="gthumb">
+        ${b.img
+          ? `<img src="${b.img}" alt="${b.title}" loading="lazy">`
+          : `<svg viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice">${thumbArt(b.art||'store')}</svg>`
+        }
+        <span class="gcbadge">${b.category}</span>
+        <div class="hover-overlay">
+          <a class="btn sm" href="${b.link}" target="_blank" rel="noopener">
+            View Build →<span class="bwave"></span><span class="bsweep"></span><span class="bglass"></span>
+          </a>
+        </div>
+      </div>
+      <div class="gplate">
+        <div class="gt">${b.title}</div>
+        <div class="gd">${b.desc}</div>
+        <div class="tags">${b.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div>
+      </div>`;
+    grid.appendChild(c);
+    delay += 60;
+    // trigger in after paint
+    requestAnimationFrame(()=> requestAnimationFrame(()=> c.classList.add('in')));
+  });
+  // re-bind tap effect to new btns
+  bindTap();
+}
+renderGarage('all');
+
+document.querySelectorAll('.chip').forEach(chip => {
+  chip.addEventListener('click', () => {
+    document.querySelectorAll('.chip').forEach(c => c.classList.remove('on'));
+    chip.classList.add('on');
+    renderGarage(chip.dataset.f);
+  });
+});
+
+/* ─── Rotator ─── */
+const rwords = ["ECOMMERCE DESIGN","AUTOMOTIVE CRAFT","PROMPT OPERATIONS","FOREX EXECUTION","BRAND MARKETING"];
+let ri = 0;
+const rel = document.getElementById('rotWord');
+rel.style.transition = 'opacity .22s ease';
+setInterval(() => {
+  ri = (ri + 1) % rwords.length;
+  rel.style.opacity = '0';
+  setTimeout(() => { rel.textContent = rwords[ri]; rel.style.opacity = '1'; }, 230);
+}, 2400);
+
+/* ─── Marquee ─── */
+const MQ_ITEMS = ["SHOPIFY","TRADINGVIEW","INSTAGRAM","META ADS","KLAVIYO","METATRADER","FIGMA","ANTHROPIC","AIR","GOOGLE ADS","CANVA","WEB DESIGN","PROMPTOPS","EVERYTHING ELSE"];
+const mqTrack = document.getElementById('mqTrack');
+mqTrack.innerHTML = [...MQ_ITEMS, ...MQ_ITEMS].map(i => `<span class="mq-item">${i}</span>`).join('');
+
+/* ─── LOADER ─── */
+(function() {
+  // build slats
+  const slatsEl = document.getElementById('slats');
+  const N = 14;
+  for(let i = 0; i < N; i++){
+    const s = document.createElement('div');
+    s.className = 'slat';
+    slatsEl.appendChild(s);
+  }
+  // animate car path
+  const carPath = document.getElementById('carPath');
+  if(carPath) carPath.style.transition = 'stroke-dashoffset 1s cubic-bezier(.16,1,.3,1)';
+
+  window.addEventListener('load', () => {
+    // car path
+    if(carPath) setTimeout(() => carPath.style.strokeDashoffset = '0', 100);
+    // tach
+    const fill = document.getElementById('tachFill');
+    const rpm  = document.getElementById('rpmOut');
+    setTimeout(() => fill.classList.add('full'), 120);
+    let r = 0;
+    const rt = setInterval(() => {
+      r = Math.min(8900, r + Math.floor(Math.random()*1600)+500);
+      rpm.textContent = String(r).padStart(4,'0') + ' RPM';
+      if(r >= 8900) clearInterval(rt);
+    }, 100);
+    // lift after delay
+    setTimeout(() => {
+      const slats = document.querySelectorAll('.slat');
+      slats.forEach((s, i) => setTimeout(() => s.classList.add('up'), i * 55));
+      setTimeout(() => {
+        document.getElementById('loader').style.pointerEvents = 'none';
+        document.getElementById('loader').style.opacity = '0';
+        document.querySelector('.hero').classList.add('loaded');
+      }, slats.length * 55 + 500);
+    }, 1500);
+  });
+})();
+
+/* ─── Header scroll ─── */
+const hdr = document.getElementById('hdr');
+const nls = document.querySelectorAll('.nl');
+const secIds = ['identity','spec','garage','process','desk','contact'];
+const secs = secIds.map(id => document.getElementById(id));
+window.addEventListener('scroll', () => {
+  hdr.classList.toggle('scrolled', scrollY > 30);
+  let cur = secs[0].id;
+  secs.forEach(s => { if(scrollY >= s.offsetTop - 160) cur = s.id; });
+  nls.forEach(l => l.classList.toggle('on', l.dataset.s === cur));
+}, {passive:true});
+
+/* ─── Mobile menu ─── */
+const brgr = document.getElementById('brgr');
+const mm   = document.getElementById('mmenu');
+brgr.addEventListener('click', () => {
+  const open = mm.classList.toggle('on');
+  brgr.classList.toggle('x', open);
+  document.body.style.overflow = open ? 'hidden' : '';
+});
+document.getElementById('mmClose').addEventListener('click', () => {
+  mm.classList.remove('on'); brgr.classList.remove('x'); document.body.style.overflow = '';
+});
+mm.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  mm.classList.remove('on'); brgr.classList.remove('x'); document.body.style.overflow = '';
+}));
+
+/* ─── Scroll reveal ─── */
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(!e.isIntersecting) return;
+    e.target.classList.add('in');
+
+    // skill bars logic
+    if(e.target.classList.contains('skr') || e.target.querySelector('.skr-fill')){
+      const f = e.target.querySelector('.skr-fill');
+      if(f){ f.style.width = f.dataset.p + '%'; }
+    }
+    io.unobserve(e.target);
+  });
+}, {threshold: 0.1});
+
+document.querySelectorAll('.rv, .rv2, .rv3').forEach(el => io.observe(el));
+// 2. THIS IS THE FIXED LINE: Observe each individual skill bar row so it catches the scroll!
+document.querySelectorAll('.skr').forEach(el => io.observe(el));
+
+/* ─── Counting numbers in spec strip ─── */
+const countIO = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(!e.isIntersecting) return;
+    const el = e.target;
+    const target = parseInt(el.dataset.count || '0');
+    const pre    = el.dataset.pre  || '';
+    const suf    = el.dataset.suf  || '';
+    if(!target){ countIO.unobserve(el); return; }
+    let n = 0, step = Math.ceil(target / 28);
+    const t = setInterval(() => {
+      n = Math.min(n + step, target);
+      el.innerHTML = `${pre}${n}${suf}`;
+      if(n >= target){ clearInterval(t); el.innerHTML = `${pre}<em>${target}</em>${suf}`; }
+    }, 40);
+    countIO.unobserve(el);
+  });
+}, {threshold:0.5});
+document.querySelectorAll('[data-count]').forEach(el => countIO.observe(el));
+
+/* ─── Custom cursor ─── */
+const cur = document.getElementById('cur');
+if(cur){
+  document.addEventListener('mousemove', e => {
+    cur.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+  }, {passive:true});
+  document.querySelectorAll('a,button,.idc,.gcard,.chip').forEach(el => {
+    el.addEventListener('mouseenter', () => cur.classList.add('hov'));
+    el.addEventListener('mouseleave', () => cur.classList.remove('hov'));
+  });
+}
+
+/* ─── Hero mouse parallax ─── */
+const heroBg = document.querySelector('.hero-bg-art');
+if(heroBg && window.matchMedia('(pointer:fine)').matches){
+  document.addEventListener('mousemove', e => {
+    const rx = (e.clientX / window.innerWidth  - .5) * 14;
+    const ry = (e.clientY / window.innerHeight - .5) * 10;
+    heroBg.style.transform = `translate(${rx}px, ${ry}px)`;
+  }, {passive:true});
+}
+
+/* ─── Mobile tap effect (persists 1.6s) ─── */
+function bindTap(){
+  document.querySelectorAll('.btn,.chip').forEach(btn => {
+    if(btn._tbound) return;
+    btn._tbound = true;
+    btn.addEventListener('touchstart', () => {
+      btn.classList.add('tap');
+      clearTimeout(btn._tt);
+      btn._tt = setTimeout(() => btn.classList.remove('tap'), 1600);
+    }, {passive:true});
+  });
+}
+bindTap();
+
+/* ─── Candlestick chart ─── */
+(function(){
+  const svg = document.getElementById('cChart');
+  const W = 520, H = 200, n = 32, pad = 16;
+  let p = 100;
+  const candles = Array.from({length:n}, (_, i) => {
+    const o = p;
+    p += (Math.random() - 0.455) * 8;
+    const c = p;
+    const h = Math.max(o,c) + Math.random()*5;
+    const lo = Math.min(o,c) - Math.random()*5;
+    const x = pad + i * ((W - pad*2) / (n-1));
+    return {o,c,h,lo,x};
+  });
+  const maxV = Math.max(...candles.map(c=>c.h));
+  const minV = Math.min(...candles.map(c=>c.lo));
+  const sy = v => H - pad - ((v-minV)/(maxV-minV)) * (H - pad*2);
+  // area path for bull closes
+  let aPath = `M${candles[0].x},${sy(candles[0].c)}`;
+  candles.forEach(c => { aPath += ` L${c.x},${sy(c.c)}`; });
+  aPath += ` L${candles[n-1].x},${H} L${candles[0].x},${H} Z`;
+
+  let markup = `<defs>
+    <linearGradient id="areaG" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#6B93AD" stop-opacity=".18"/>
+      <stop offset="100%" stop-color="#6B93AD" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <path d="${aPath}" fill="url(#areaG)"/>`;
+
+  candles.forEach(c => {
+    const up = c.c >= c.o;
+    const col = up ? '#6B93AD' : '#FF4D1C';
+    const bY = sy(Math.max(c.o,c.c));
+    const bH = Math.max(1.5, Math.abs(sy(c.o) - sy(c.c)));
+    markup += `
+      <line x1="${c.x}" y1="${sy(c.h)}" x2="${c.x}" y2="${sy(c.lo)}" stroke="${col}" stroke-width=".9" opacity=".7"/>
+      <rect x="${c.x-2.5}" y="${bY}" width="5" height="${bH}" fill="${col}" opacity=".9"/>`;
+  });
+  // grid lines
+  [.25,.5,.75].forEach(r => {
+    const y = pad + r*(H-pad*2);
+    markup += `<line x1="${pad}" y1="${y}" x2="${W-pad}" y2="${y}" stroke="#E8E3D8" stroke-opacity=".06" stroke-dasharray="3,4"/>`;
+  });
+  svg.innerHTML = markup;
+})();
+
+/* ─── Contact submit ─── */
+function handleSubmit(e){
+  e.preventDefault();
+  const name = document.getElementById('fn')?.value.trim();
+  const email = document.getElementById('fe')?.value.trim();
+  const type = document.getElementById('ft')?.value || '';
+  const msg = document.getElementById('fm')?.value.trim();
+  const btn = document.getElementById('submitBtn');
+  const to = 'kaveeshshadow@gmail.com';
+  const subject = `Build Intake — ${type} — ${name || 'New Lead'}`;
+  const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nProject Type: ${type}\n\nMessage:\n${msg}`);
+  const mailto = `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${body}`;
+  window.location.href = mailto;
+  btn.innerHTML = 'Intake Logged ✓<span class="bwave"></span><span class="bsweep"></span><span class="bglass"></span>';
+  btn.disabled = true;
+  setTimeout(() => {
+    btn.innerHTML = 'Submit Intake<span class="bwave"></span><span class="bsweep"></span><span class="bglass"></span>';
+    btn.disabled = false;
+  }, 3000);
+  return false;
+}
+
+document.getElementById('yr').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
+HTMLEOF
+echo "done - $(wc -l < /home/claude/index.html) lines"
