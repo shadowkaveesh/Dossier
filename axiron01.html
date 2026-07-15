@@ -1,175 +1,118 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Axiron01 Prototype</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Axiron01 concept vehicle build sheet by Versatile Carz.">
+  <title>Axiron01 Prototype | Versatile Carz</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;700;900&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="dossier-pages.css">
 </head>
-<body>
-  <main class="page-container">
-    <div class="wrap">
-      <a href="index.html" class="switch-btn small">← Back to Dossier</a>
-      <article class="capability-panel" style="margin-top:1.5rem;">
-        <div class="eyebrow">AXIRION01 / ENGINEERING BRIEF</div>
-        <h1>45-lakh INR, Indian-road, high-luxury performance architecture with real aero skills.</h1>
-        <p class="lede">This is a systems-level concept built around aero efficiency, thermal control, chassis compliance, and a cost-coded production logic that still feels like a future collector object rather than a spreadsheet fantasy.</p>
+<body class="dossier-page">
+  <header class="dossier-header">
+    <div class="page-wrap">
+      <a class="dossier-brand" href="index.html">Versatile Carz</a>
+      <nav class="dossier-nav" aria-label="Project navigation">
+        <a href="index.html#garage">Garage</a>
+        <a href="#architecture" aria-current="page">Architecture</a>
+        <a href="promptops.html">PromptOps</a>
+        <a href="promptops-intake.html">Start a Build</a>
+      </nav>
+    </div>
+  </header>
 
-        <div class="code-block" style="margin-top:2rem;">
-          <span class="code-line code-comment">// Claude-inspired architecture preview for Axiron01</span>
-          <span class="code-line"><span class="code-keyword">const</span> axiron01 = <span class="code-function">defineVehicle</span>({</span>
-          <span class="code-line">  <span class="code-property">model</span>: <span class="code-string">'Axiron01'</span>,</span>
-          <span class="code-line">  <span class="code-property">aero</span>: <span class="code-string">'active splitter, venturi, rear wing'</span>,</span>
-          <span class="code-line">  <span class="code-property">thermal</span>: <span class="code-string">'dual loop oil + charge-air cooling'</span>,</span>
-          <span class="code-line">  <span class="code-property">powertrain</span>: <span class="code-string">'470hp inline-4 + hybrid torque vector'</span>,</span>
-          <span class="code-line">  <span class="code-property">package</span>: <span class="code-string">'45L INR performance GT'</span>,</span>
-          <span class="code-line">});</span>
-        </div>
-
-        <div class="spec-strip" style="margin-top:2rem;">
-          <div class="spec-cell">
-            <div class="num"><span>45L</span></div>
-            <div class="lab">Target budget envelope</div>
-          </div>
-          <div class="spec-cell">
-            <div class="num"><span>0.24</span></div>
-            <div class="lab">Cd target for aero stability</div>
-          </div>
-          <div class="spec-cell">
-            <div class="num"><span>4.8s</span></div>
-            <div class="lab">0–100 km/h estimate</div>
-          </div>
-          <div class="spec-cell">
-            <div class="num"><span>470hp</span></div>
-            <div class="lab">Projected output band</div>
-          </div>
-          <div class="spec-cell">
-            <div class="num"><span>±3%</span></div>
-            <div class="lab">Thermal drift tolerance</div>
+  <main class="page-main">
+    <div class="page-wrap">
+      <section class="project-hero" id="top">
+        <div>
+          <div class="eyebrow">Build 07 / Concept Vehicle</div>
+          <h1>Axiron01<br><em>Prototype</em></h1>
+          <p class="lede">A speculative Indian-road performance GT built around one question: how much aero discipline, thermal resilience, and driver focus can fit into a 45 lakh INR concept envelope?</p>
+          <div class="action-row">
+            <a class="tech-btn primary" href="promptops-intake.html?prefillType=Automotive%20Craft&amp;prefillMsg=I%20want%20a%20full%20Axiron01%20engineering%20brief%20with%20aerodynamics%2C%20thermal%20strategy%2C%20and%20production%20logic.">Discuss Axiron01 -&gt;</a>
+            <a class="tech-btn" href="index.html#garage">Back to Garage</a>
           </div>
         </div>
+        <aside class="vehicle-stage" aria-label="Axiron01 concept vehicle side-profile diagram">
+          <span class="stage-corner top">AERO FORM / REV 01</span>
+          <svg viewBox="0 0 720 420" role="img" aria-label="Line drawing of the Axiron01 concept vehicle">
+            <g fill="none" stroke-linecap="square">
+              <path d="M83 279H133L163 222L230 191L358 181L461 187L529 211L588 248L639 262L659 280H690" stroke="#e8e3d8" stroke-width="3" opacity=".78"/>
+              <path d="M164 222L205 155L298 132L389 139L462 187" stroke="#ff4d1c" stroke-width="3"/>
+              <path d="M206 156L273 158L330 179M528 211L541 181L581 215" stroke="#6b93ad" stroke-width="2"/>
+              <path d="M132 280L165 289L566 289L638 280" stroke="#bf9840" stroke-width="2" opacity=".75"/>
+              <path d="M302 150L300 221M389 141L412 199M500 201L534 264" stroke="#e8e3d8" stroke-width="1.5" opacity=".46"/>
+              <circle cx="221" cy="286" r="39" stroke="#e8e3d8" stroke-width="3"/>
+              <circle cx="572" cy="286" r="39" stroke="#e8e3d8" stroke-width="3"/>
+              <circle cx="221" cy="286" r="13" stroke="#ff4d1c" stroke-width="2"/>
+              <circle cx="572" cy="286" r="13" stroke="#ff4d1c" stroke-width="2"/>
+              <path d="M91 319H647M91 311V327M647 311V327" stroke="#6b93ad" stroke-width="1" opacity=".7"/>
+              <path d="M82 114H356M82 106V122M356 106V122" stroke="#bf9840" stroke-width="1" opacity=".6"/>
+            </g>
+            <g font-family="IBM Plex Mono, monospace" font-size="13" letter-spacing="2">
+              <text x="95" y="101" fill="#bf9840">LOW DRAG ROOFLINE</text>
+              <text x="94" y="347" fill="#6b93ad">WHEELBASE / 2,670 MM TARGET</text>
+              <text x="464" y="160" fill="#ff4d1c">ACTIVE SPOILER</text>
+              <text x="82" y="381" fill="#8a857a">AX-01 // DESIGN STUDY</text>
+            </g>
+          </svg>
+          <span class="stage-corner bottom">Concept only / Not production data</span>
+        </aside>
+      </section>
 
-        <div class="blueprint-grid" style="margin-top:2rem;">
-          <div class="blueprint-card">
-            <div class="eyebrow">01 / SIDE PROFILE</div>
-            <svg class="blueprint-svg" viewBox="0 0 480 260" aria-label="Axiron01 side profile blueprint">
-              <rect x="20" y="20" width="440" height="220" rx="18" fill="#0f1723" stroke="#3b4a61" />
-              <path d="M115 185 L150 132 L228 112 L305 110 L357 126 L390 155 L403 186 L334 198 L271 214 L176 215 L120 200 Z" fill="none" stroke="#f55f32" stroke-width="2.2" />
-              <path d="M150 132 L172 96 L235 86 L267 98 L300 105 L326 116 L355 124" fill="none" stroke="#78a7c2" stroke-width="1.4" stroke-dasharray="4 4" />
-              <path d="M224 116 L225 182" stroke="#d4dce8" stroke-width="1.1" opacity="0.55" />
-              <path d="M258 110 L278 70" stroke="#f55f32" stroke-width="1.3" />
-              <path d="M164 174 L106 148" stroke="#78a7c2" stroke-width="1.3" />
-              <circle cx="186" cy="198" r="16" stroke="#f7e3aa" stroke-width="1.4" />
-              <circle cx="332" cy="198" r="16" stroke="#f7e3aa" stroke-width="1.4" />
-              <path d="M95 160 C130 144 152 138 190 142" stroke="#f55f32" stroke-width="1.2" opacity="0.75" />
-              <path d="M355 140 C387 154 405 168 417 180" stroke="#78a7c2" stroke-width="1.2" opacity="0.7" />
-              <text x="40" y="48" font-size="14" fill="#9dacb8" font-family="IBM Plex Mono">AERO-PLANFORM / LOW DRAG SHOULDER</text>
-              <text x="40" y="232" font-size="13" fill="#f7e3aa" font-family="IBM Plex Mono">CD TARGET 0.24 • ACTIVE SPOILER LOGIC</text>
-            </svg>
-            <p>Fastback shoulders, venturi underbody shaping, and a sculpted roofline tuned to reduce turbulence at 110–140 km/h highway loads.</p>
+      <section class="section-block" id="architecture">
+        <div class="section-heading">
+          <div>
+            <div class="eyebrow">Spec 01 / Targets</div>
+            <h2>Performance <em>Envelope</em></h2>
           </div>
-          <div class="blueprint-card">
-            <div class="eyebrow">02 / UNDERBODY FLOW</div>
-            <svg class="blueprint-svg" viewBox="0 0 480 260" aria-label="Axiron01 underbody and airflow blueprint">
-              <rect x="20" y="20" width="440" height="220" rx="18" fill="#0f1723" stroke="#3b4a61" />
-              <path d="M110 190 C148 162 176 152 214 153 C258 154 300 168 346 163 C372 160 395 148 417 134" fill="none" stroke="#78a7c2" stroke-width="1.4" stroke-dasharray="5 5" />
-              <path d="M112 190 L156 185 L206 176 L255 178 L302 172 L358 174 L404 160" fill="none" stroke="#f55f32" stroke-width="2.2" />
-              <path d="M134 182 L132 214" stroke="#d4dce8" stroke-width="1.1" />
-              <path d="M204 170 L206 146" stroke="#d4dce8" stroke-width="1.1" />
-              <path d="M310 171 L318 137" stroke="#d4dce8" stroke-width="1.1" />
-              <path d="M274 114 C294 90 326 81 354 92" stroke="#f7e3aa" stroke-width="1.2" />
-              <path d="M120 148 C155 128 182 120 218 122" stroke="#f55f32" stroke-width="1.2" opacity="0.85" />
-              <path d="M224 184 L265 144" stroke="#78a7c2" stroke-width="1.2" />
-              <text x="40" y="48" font-size="14" fill="#9dacb8" font-family="IBM Plex Mono">UNDERBODY / DIFFUSER / RAM AIR</text>
-              <text x="40" y="232" font-size="13" fill="#f7e3aa" font-family="IBM Plex Mono">AIRFLOW PATHING • FRONT LIP • REAR CHANNEL</text>
-            </svg>
-            <p>Underbody tunnels, diffuser wake management, and front splitter pressure balancing are designed to keep lift in check and cornering stability high.</p>
+          <p class="lede">The figures below frame the exercise. They are design targets for a concept study, not a production specification.</p>
+        </div>
+        <div class="spec-grid">
+          <div class="spec-item"><div class="spec-value">45<em>L</em></div><div class="spec-label">INR target envelope</div></div>
+          <div class="spec-item"><div class="spec-value">0.24</div><div class="spec-label">Target drag coefficient</div></div>
+          <div class="spec-item"><div class="spec-value">4.8<em>S</em></div><div class="spec-label">0-100 km/h target</div></div>
+          <div class="spec-item"><div class="spec-value">470<em>HP</em></div><div class="spec-label">Projected output band</div></div>
+          <div class="spec-item"><div class="spec-value">2+2</div><div class="spec-label">GT seating package</div></div>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <div class="section-heading">
+          <div>
+            <div class="eyebrow">Spec 02 / Engineering</div>
+            <h2>Built Around <em>Systems</em></h2>
           </div>
-          <div class="blueprint-card">
-            <div class="eyebrow">03 / POWER / THERMAL</div>
-            <svg class="blueprint-svg" viewBox="0 0 480 260" aria-label="Axiron01 powertrain and thermal blueprint">
-              <rect x="20" y="20" width="440" height="220" rx="18" fill="#0f1723" stroke="#3b4a61" />
-              <rect x="90" y="80" width="110" height="88" rx="10" fill="none" stroke="#f55f32" stroke-width="2" />
-              <rect x="250" y="76" width="140" height="92" rx="10" fill="none" stroke="#78a7c2" stroke-width="2" />
-              <path d="M200 126 L250 126" stroke="#d4dce8" stroke-width="1.4" />
-              <path d="M105 80 L105 48" stroke="#f7e3aa" stroke-width="1.2" />
-              <path d="M152 80 L152 48" stroke="#f7e3aa" stroke-width="1.2" />
-              <path d="M260 80 L260 48" stroke="#78a7c2" stroke-width="1.2" />
-              <path d="M330 80 L330 48" stroke="#78a7c2" stroke-width="1.2" />
-              <path d="M120 168 C180 168 228 184 280 184" stroke="#f55f32" stroke-width="1.2" opacity="0.8" />
-              <path d="M128 198 C185 198 215 210 275 210" stroke="#78a7c2" stroke-width="1.2" opacity="0.75" />
-              <circle cx="118" cy="126" r="8" fill="#f55f32" opacity="0.9" />
-              <circle cx="282" cy="126" r="8" fill="#78a7c2" opacity="0.9" />
-              <text x="40" y="48" font-size="14" fill="#9dacb8" font-family="IBM Plex Mono">POWERTRAIN / COOLING / TORQUE MAP</text>
-              <text x="40" y="232" font-size="13" fill="#f7e3aa" font-family="IBM Plex Mono">INLINE-4 • HYBRID HEAT PATH • TORQUE VECTORING</text>
-            </svg>
-            <p>High-output inline-four architecture, active thermal routing, and a torque-vectoring control strategy tuned for both low-speed city bite and highway stability.</p>
-          </div>
-          <div class="blueprint-card">
-            <div class="eyebrow">04 / CFD PRESSURE MAP</div>
-            <svg class="blueprint-svg" viewBox="0 0 480 260" aria-label="Axiron01 CFD pressure map blueprint">
-              <rect x="20" y="20" width="440" height="220" rx="18" fill="#0f1723" stroke="#3b4a61" />
-              <ellipse cx="190" cy="120" rx="90" ry="36" fill="none" stroke="#78a7c2" stroke-width="1.4" opacity="0.8" />
-              <ellipse cx="290" cy="130" rx="80" ry="28" fill="none" stroke="#f55f32" stroke-width="1.4" opacity="0.8" />
-              <path d="M124 100 L150 88" stroke="#d4dce8" stroke-width="1.1" />
-              <path d="M304 132 L330 120" stroke="#d4dce8" stroke-width="1.1" />
-              <path d="M150 116 L365 116" stroke="#f7e3aa" stroke-width="1.2" stroke-dasharray="6 4" />
-              <path d="M190 100 L190 60" stroke="#f55f32" stroke-width="1.2" />
-              <text x="40" y="48" font-size="14" fill="#9dacb8" font-family="IBM Plex Mono">CFD PRESSURE MAP</text>
-              <text x="40" y="232" font-size="13" fill="#f7e3aa" font-family="IBM Plex Mono">HIGH-LOW PRESSURE ZONES • WHEEL WAKE CONTROL</text>
-            </svg>
-            <p>Pressure gradients are balanced across the nose, mirror pods, and rear section to lower wake separation and stabilise the chassis under crosswind loading.</p>
-          </div>
-          <div class="blueprint-card">
-            <div class="eyebrow">05 / THERMAL ROUTING</div>
-            <svg class="blueprint-svg" viewBox="0 0 480 260" aria-label="Axiron01 thermal routing blueprint">
-              <rect x="20" y="20" width="440" height="220" rx="18" fill="#0f1723" stroke="#3b4a61" />
-              <rect x="90" y="78" width="70" height="56" rx="8" fill="none" stroke="#78a7c2" stroke-width="1.8" />
-              <rect x="240" y="78" width="70" height="56" rx="8" fill="none" stroke="#f55f32" stroke-width="1.8" />
-              <rect x="180" y="158" width="120" height="52" rx="10" fill="none" stroke="#f7e3aa" stroke-width="1.8" />
-              <path d="M130 112 L180 112" stroke="#d4dce8" stroke-width="1.2" />
-              <path d="M310 112 L360 112" stroke="#d4dce8" stroke-width="1.2" />
-              <path d="M220 134 L220 158" stroke="#f55f32" stroke-width="1.2" />
-              <path d="M220 64 L220 20" stroke="#78a7c2" stroke-width="1.2" />
-              <text x="40" y="48" font-size="14" fill="#9dacb8" font-family="IBM Plex Mono">THERMAL ROUTING</text>
-              <text x="40" y="232" font-size="13" fill="#f7e3aa" font-family="IBM Plex Mono">RADIATOR • OIL COOLER • CHARGER AIR LOOP</text>
-            </svg>
-            <p>Heat flow mapping keeps the core loop inside the 95–100°C window, with separate charge-air and oil cooling tiers to prevent thermal coupling under prolonged track work.</p>
+          <p class="lede">Aero, cooling, power delivery, and ride quality are treated as one linked programme rather than separate styling exercises.</p>
+        </div>
+        <div class="engineering-grid">
+          <article class="engineering-item"><div class="engineering-index">01 / AIRFLOW</div><h3>Stable at speed</h3><p>Fastback shoulders, venturi tunnels, and splitter control work together to reduce lift while keeping highway behaviour predictable.</p></article>
+          <article class="engineering-item"><div class="engineering-index">02 / THERMAL</div><h3>Heat has a route</h3><p>Separate coolant, oil, and charge-air paths are proposed to stop sustained load from becoming a single thermal bottleneck.</p></article>
+          <article class="engineering-item"><div class="engineering-index">03 / ROAD LOGIC</div><h3>Composure first</h3><p>Adaptive damping and a low-mounted hybrid pack prioritise control on uneven Indian roads without losing the GT brief.</p></article>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <div class="section-heading">
+          <div>
+            <div class="eyebrow">Spec 03 / System Register</div>
+            <h2>Design <em>Checklist</em></h2>
           </div>
         </div>
-
-        <div class="metric-grid" style="margin-top:2rem;">
-          <div class="metric-card">
-            <h3>Chassis Logic</h3>
-            <p>Double-wishbone front, multilink rear, active dampers, and a low-mounted battery backbone to keep roll center control clean and predictable.</p>
-          </div>
-          <div class="metric-card">
-            <h3>Interior Philosophy</h3>
-            <p>Minimalist cabin, driver-first controls, haptics, and premium materials with ergonomic architecture calibrated for Indian road use and long-distance comfort.</p>
-          </div>
-          <div class="metric-card">
-            <h3>Production Narrative</h3>
-            <p>Every major panel, bracket, and trim element is cost-scoped around a 45-lakh INR ceiling so the concept remains technically rational rather than purely aspirational.</p>
-          </div>
+        <div class="system-table">
+          <div class="system-row"><div class="system-name">Aero Package</div><div class="system-detail">Active front splitter, pressure-managed underbody, and rear aero control for low-speed efficiency and higher-speed balance.</div><div class="system-status">Concept target</div></div>
+          <div class="system-row"><div class="system-name">Powertrain</div><div class="system-detail">High-output inline-four with hybrid assist and torque management intended to keep response immediate without overcomplicating the package.</div><div class="system-status">Architecture</div></div>
+          <div class="system-row"><div class="system-name">Thermal Loop</div><div class="system-detail">Oil, coolant, and charge-air circuits are separated in the concept to reduce coupling under prolonged heat load.</div><div class="system-status">Simulation brief</div></div>
+          <div class="system-row"><div class="system-name">Cabin</div><div class="system-detail">Driver-first controls, physical touchpoints, and material restraint built around long-distance comfort rather than an overloaded screen stack.</div><div class="system-status">Interior logic</div></div>
         </div>
-
-        <div class="sys-wrap" style="margin-top:2rem;">
-          <h3>System Breakdown</h3>
-          <div class="sys-list">
-            <div class="sys-row"><strong>Aerodynamic package</strong><span>Active front splitter, venturi tunnel, rear wing with angle-tuned loading and low-speed drag control.</span></div>
-            <div class="sys-row"><strong>Thermal subsystems</strong><span>Turbo heat shielding, oil/coolant routing, and sensor-driven thermal compensation under heavy load.</span></div>
-            <div class="sys-row"><strong>Powertrain</strong><span>2.0L high-output inline-four with hybrid assist, rapid response mapping, and torque vector control.</span></div>
-            <div class="sys-row"><strong>Vehicle dynamics</strong><span>Adaptive damping, brake-by-wire calibration, and stiffer rear support to keep the car planted on rough surfaces.</span></div>
-          </div>
-        </div>
-    &nbsp;     </p> adding more stuff and data soon</p>
-
-        <div style="margin-top:2rem; display:flex; flex-wrap:wrap; gap:1rem;">
-          <a class="switch-btn primary" href="index.html?scrollToContact=1&recipient=kaveeshshadow@gmail.com&prefillType=Automotive%20Craft&prefillMsg=I%20want%20a%20full%20Axiron01%20engineering%20brief%20with%20aerodynamics%2C%20thermal%20strategy%2C%20and%20production%20logic.">Discuss Axiron01</a>
-          <a class="switch-btn" href="index.html">Return to Dossier</a>
-        </div>
-      </article>
+      </section>
     </div>
   </main>
+
+  <footer class="dossier-footer">
+    <div class="page-wrap"><p>Versatile Carz / Axiron01 build sheet</p><p><a href="promptops-intake.html">Start a build -&gt;</a></p></div>
+  </footer>
 </body>
 </html>

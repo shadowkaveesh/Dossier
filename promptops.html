@@ -1,109 +1,86 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>PromptOps — Topic Library</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="PromptOps Engine Line, a structured prompt system portfolio by Versatile Carz.">
+  <title>PromptOps Engine Line | Versatile Carz</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;700;900&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="dossier-pages.css">
 </head>
-<body>
-  <main class="page-container">
-    <div class="wrap">
-      <a href="index.html" class="switch-btn small">← Back to Dossier</a>
-      <article class="capability-panel">
-        <div class="eyebrow">PROMPTOPS / TOPIC LIBRARY</div>
-        <h1>Prompt systems for thoughtful brands, launches, and fast-moving teams.</h1>
-        <p class="lede">This library is built for content, product, design, and trading workflows — each topic becomes a more structured intake so the first reply feels useful instead of generic.</p>
+<body class="dossier-page">
+  <header class="dossier-header">
+    <div class="page-wrap">
+      <a class="dossier-brand" href="index.html">Versatile Carz</a>
+      <nav class="dossier-nav" aria-label="Project navigation">
+        <a href="index.html#garage">Garage</a>
+        <a href="#engine" aria-current="page">Engine Line</a>
+        <a href="#library">Library</a>
+        <a href="promptops-intake.html">Start a Build</a>
+      </nav>
+    </div>
+  </header>
 
-        <div class="code-block" style="margin-top:2rem;">
-          <span class="code-line code-comment">// Claude-style prompt assembly for launch systems</span>
-          <span class="code-line"><span class="code-keyword">const</span> prompt = <span class="code-function">buildPrompt</span>({</span>
-          <span class="code-line">  <span class="code-property">context</span>: <span class="code-string">'Brand voice, campaign outcome, audience, format'</span>,</span>
-          <span class="code-line">  <span class="code-property">intent</span>: <span class="code-string">'Generate social copy, UX copy, and launch messaging'</span>,</span>
-          <span class="code-line">  <span class="code-property">constraints</span>: [<span class="code-string">'concise'</span>, <span class="code-string">'brand-aware'</span>, <span class="code-string">'ready for direct handoff'</span>],</span>
-          <span class="code-line">  <span class="code-property">output</span>: <span class="code-string">'single-session prompt response'</span>,</span>
-          <span class="code-line">});</span>
-        </div>
-
-        <div class="spec-strip" style="margin-top:2rem;">
-          <div class="spec-cell">
-            <div class="num"><span>50+</span></div>
-            <div class="lab">Prompt topics across content, strategy, and product work</div>
-          </div>
-          <div class="spec-cell">
-            <div class="num"><span>1-click</span></div>
-            <div class="lab">Open the intake with a tailored starting brief</div>
-          </div>
-          <div class="spec-cell">
-            <div class="num"><span>Brand-aware</span></div>
-            <div class="lab">Responses are shaped around tone, audience, and goals</div>
-          </div>
-          <div class="spec-cell">
-            <div class="num"><span>Multi-use</span></div>
-            <div class="lab">Built for launches, social, UX writing, and research</div>
-          </div>
-          <div class="spec-cell">
-            <div class="num"><span>Fast handoff</span></div>
-            <div class="lab">Structured prompts reduce back-and-forth and save time</div>
+  <main class="page-main">
+    <div class="page-wrap">
+      <section class="project-hero" id="engine">
+        <div>
+          <div class="eyebrow">Build 03 / AI Operations</div>
+          <h1>PromptOps<br><em>Engine Line</em></h1>
+          <p class="lede">A production-minded prompt workflow for research, brand voice, drafting, critique, and final delivery. The point is not more prompts. It is a repeatable system that can survive real client work.</p>
+          <div class="action-row">
+            <a class="tech-btn primary" href="#library">Browse prompt topics -&gt;</a>
+            <a class="tech-btn" href="promptops-intake.html?prefillType=PromptOps%20System&amp;prefillMsg=I%20want%20to%20plan%20a%20PromptOps%20system%20for%20my%20workflow.">Start a PromptOps build</a>
           </div>
         </div>
+        <aside class="console-stage" aria-label="PromptOps pipeline status">
+          <div class="console-title">Pipeline v2.3 / ECOM-LAUNCH</div>
+          <div class="console-line"><span class="ok">[ok]</span> loading <b>brand_voice.yaml</b></div>
+          <div class="console-line"><span class="ok">[ok]</span> context: product / audience / offer</div>
+          <div class="console-line"><span class="val">-&gt;</span> chain: research -&gt; draft -&gt; critique -&gt; polish</div>
+          <div class="console-line"><span class="ok">[ok]</span> tone match: <b>96%</b> / tokens: <b>1,840</b></div>
+          <div class="console-line"><span class="val">-&gt;</span> output validated / ready for review <span class="console-cursor"></span></div>
+        </aside>
+      </section>
 
-        <div class="blueprint-grid" style="margin-top:2rem;">
-          <div class="blueprint-card">
-            <div class="eyebrow">01 / SYSTEM SHAPE</div>
-            <h3>Structured, not sterile</h3>
-            <p>Every prompt starts with context, audience, output format, and an action step so the response is usable as soon as it lands.</p>
+      <section class="section-block">
+        <div class="section-heading">
+          <div>
+            <div class="eyebrow">Spec 01 / Pipeline</div>
+            <h2>From Brief To <em>Useful Output</em></h2>
           </div>
-          <div class="blueprint-card">
-            <div class="eyebrow">02 / FLEXIBLE USE CASES</div>
-            <h3>Built for many skills</h3>
-            <p>From marketing copy and product briefs to UX flows and trading research, the topics are written to be adaptable.</p>
-          </div>
-          <div class="blueprint-card">
-            <div class="eyebrow">03 / INTAKE TO ACTION</div>
-            <h3>Fast route into the conversation</h3>
-            <p>Each prompt opens straight into the contact flow with the right subject and starting message so momentum stays intact.</p>
-          </div>
+          <p class="lede">Every run starts with the inputs that matter, gives the model a clear job, and retains an explicit quality check before handoff.</p>
         </div>
+        <div class="engineering-grid">
+          <article class="engineering-item"><div class="engineering-index">01 / CONTEXT</div><h3>Load the signal</h3><p>Audience, brand rules, reference material, commercial objective, and output format are gathered before the prompt starts doing work.</p></article>
+          <article class="engineering-item"><div class="engineering-index">02 / ITERATE</div><h3>Draft with checks</h3><p>Research, draft, critique, and polish are treated as distinct stages so assumptions can be reviewed instead of buried in a one-shot answer.</p></article>
+          <article class="engineering-item"><div class="engineering-index">03 / HANDOFF</div><h3>Ship with intent</h3><p>The final response is formatted for its actual destination: campaign, product page, content plan, research brief, or operational document.</p></article>
+        </div>
+      </section>
 
-        <div class="metric-grid" style="margin-top:2rem;">
-          <div class="metric-card">
-            <h3>Thoughtful briefs</h3>
-            <p>Prompts are framed around real outcomes, not generic writing exercises.</p>
+      <section class="section-block" id="library">
+        <div class="section-heading">
+          <div>
+            <div class="eyebrow">Spec 02 / Topic Library</div>
+            <h2>Find a <em>Starting Point</em></h2>
           </div>
-          <div class="metric-card">
-            <h3>Faster iteration</h3>
-            <p>Start from a clear direction and refine with less setup time on every project.</p>
-          </div>
-          <div class="metric-card">
-            <h3>Cleaner collaboration</h3>
-            <p>Useful handoffs make it easier to move from idea to draft without losing context.</p>
-          </div>
+          <p class="lede">Choose a topic, then open the dedicated Start a Build page with a clear PromptOps message already prepared.</p>
         </div>
-
-        <div class="topic-section" style="margin-top:2.4rem;">
-          <div class="sec-head">
-            <div class="eyebrow">02 / BROWSE THE LIBRARY</div>
-            <h2>Choose a topic and launch the intake</h2>
-            <p class="lede">Pick the prompt theme that matches your brief, then open the form with a tailored starting message already in place.</p>
-          </div>
-          <div class="topic-grid" id="topicGrid"></div>
+        <div class="topic-tools">
+          <div class="topic-count" id="topicCount" aria-live="polite"></div>
+          <input class="topic-search" id="topicSearch" type="search" autocomplete="off" placeholder="Search the topic library" aria-label="Search the prompt topic library">
         </div>
-
-        <div class="topic-footer" style="margin-top:2rem;">
-          <div class="topic-panel">
-            <h3>Trading consult</h3>
-            <p>Need direct trading guidance? Open the intake with a prefilled strategy question and continue the conversation.</p>
-            <a class="switch-btn btn-large" id="tradingConsultBtn" href="index.html?scrollToContact=1&recipient=kaveeshshadow@gmail.com&prefillType=Trading%20Consult&prefillMsg=I%20have%20a%20trading%20question%20and%20need%20help%20with%20my%20strategy.%20Please%20detail%20the%20query%20below." target="_self">Open Trading Consult</a>
-          </div>
-          <div class="topic-panel">
-            <h3>PromptOps notes</h3>
-            <p>Each topic routes to the home-page intake with a tailored opening brief so the conversation starts with momentum.</p>
-          </div>
-        </div>
-      </article>
+        <div class="topic-grid" id="topicGrid"></div>
+      </section>
     </div>
   </main>
+
+  <footer class="dossier-footer">
+    <div class="page-wrap"><p>Versatile Carz / PromptOps Engine Line</p><p><a href="promptops-intake.html">Start a build -&gt;</a></p></div>
+  </footer>
+
   <script>
     const topics = [
       'Cars engineering', 'Automobile creative research', 'Instagram marketing', 'Website building', '3D editing',
@@ -131,10 +108,12 @@
     ];
 
     const topicGrid = document.getElementById('topicGrid');
+    const topicSearch = document.getElementById('topicSearch');
+    const topicCount = document.getElementById('topicCount');
 
     function buildMessage(topic) {
       if (/3D|Blender|render|motion|AR|VR|asset/i.test(topic)) {
-        return `I want to create this ${topic} topic in Blender and build a visual prompt around it.`;
+        return `I want to create a ${topic} prompt with visual direction and a clear production brief.`;
       }
       if (/trading|forecast|strategy|market|forex|crypto/i.test(topic)) {
         return `I want to explore a ${topic} strategy and need a prompt-driven research brief.`;
@@ -145,18 +124,51 @@
       return `I want a prompt for ${topic} with structure, creative direction, and an action plan.`;
     }
 
-    topics.forEach(topic => {
-      const card = document.createElement('article');
-      card.className = 'topic-card';
-      card.innerHTML = `
-        <div class="topic-copy">
-          <h3>${topic}</h3>
-          <p>${buildMessage(topic)}</p>
-        </div>
-        <a class="switch-btn btn-large" href="index.html?scrollToContact=1&recipient=kaveeshshadow@gmail.com&prefillType=PromptOps&prefillMsg=${encodeURIComponent(buildMessage(topic))}" target="_self">Contact Me</a>
-      `;
-      topicGrid.appendChild(card);
-    });
+    function makeIntakeUrl(topic) {
+      const params = new URLSearchParams({
+        prefillType: 'PromptOps System',
+        prefillMsg: buildMessage(topic)
+      });
+      return `promptops-intake.html?${params.toString()}`;
+    }
+
+    function renderTopics(query = '') {
+      const normalizedQuery = query.trim().toLowerCase();
+      const results = topics.filter(topic => topic.toLowerCase().includes(normalizedQuery));
+      topicGrid.replaceChildren();
+      topicCount.textContent = `${results.length} of ${topics.length} prompt topics loaded`;
+
+      if (!results.length) {
+        const empty = document.createElement('p');
+        empty.className = 'empty-topics';
+        empty.textContent = 'No prompt topics match that search.';
+        topicGrid.appendChild(empty);
+        return;
+      }
+
+      results.forEach(topic => {
+        const card = document.createElement('article');
+        card.className = 'topic-card';
+
+        const copy = document.createElement('div');
+        const title = document.createElement('h3');
+        const description = document.createElement('p');
+        title.textContent = topic;
+        description.textContent = buildMessage(topic);
+        copy.append(title, description);
+
+        const contact = document.createElement('a');
+        contact.className = 'tech-btn';
+        contact.href = makeIntakeUrl(topic);
+        contact.textContent = 'Contact me ->';
+
+        card.append(copy, contact);
+        topicGrid.appendChild(card);
+      });
+    }
+
+    topicSearch.addEventListener('input', event => renderTopics(event.target.value));
+    renderTopics();
   </script>
 </body>
 </html>

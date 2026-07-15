@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -252,16 +251,17 @@ section{padding:120px 0;border-top:1px solid var(--hair);}
 
 /* ── GARAGE ─────────────────────────────────────── */
 .filter-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:44px;}
-.g-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.g-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;}
 @media(max-width:960px){.g-grid{grid-template-columns:repeat(2,1fr);}}
 @media(max-width:580px){.g-grid{grid-template-columns:1fr;}}
-.gcard{border:1px solid var(--hair);background:var(--panel);position:relative;overflow:hidden;
-  transition:transform .35s cubic-bezier(.2,.8,.2,1),border-color .3s;
-  opacity:0;transform:translateY(20px) scale(.98);}
+.gcard{border:1px solid var(--hair);background:var(--panel);position:relative;overflow:hidden;border-radius:20px;
+  transition:transform .35s cubic-bezier(.2,.8,.2,1),border-color .3s,box-shadow .3s;
+  opacity:0;transform:translateY(20px) scale(.98);box-shadow:0 10px 26px rgba(0,0,0,.14);}
 .gcard.in{opacity:1;transform:translateY(0) scale(1);transition:opacity .55s cubic-bezier(.16,1,.3,1),transform .55s cubic-bezier(.16,1,.3,1),border-color .3s;}
-.gcard:hover{transform:translateY(-4px);border-color:rgba(255,77,28,.35);}
-.gthumb{aspect-ratio:16/10;position:relative;overflow:hidden;background:var(--bg2);}
-.gthumb svg{width:100%;height:100%;}
+.gcard:hover{transform:translateY(-4px);border-color:rgba(255,77,28,.35);box-shadow:0 14px 32px rgba(0,0,0,.2);}
+.gthumb{aspect-ratio:16/10;min-height:190px;position:relative;overflow:hidden;background:var(--bg2);}
+.gthumb svg,.gthumb img{width:100%;height:100%;display:block;}
+.gthumb img{object-fit:cover;}
 .gthumb .gcbadge{position:absolute;top:10px;left:10px;font-family:var(--M);font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;background:rgba(10,10,9,.8);border:1px solid var(--hair2);padding:4px 9px;color:var(--ink-dim);}
 .gthumb .hover-overlay{position:absolute;inset:0;background:rgba(10,10,9,.65);backdrop-filter:blur(4px);opacity:0;transition:opacity .3s;display:flex;align-items:center;justify-content:center;}
 .gcard:hover .hover-overlay{opacity:1;}
@@ -270,7 +270,7 @@ section{padding:120px 0;border-top:1px solid var(--hair);}
 .gplate .gd{font-family:var(--B);font-size:12.5px;color:var(--ink-dim);margin-top:6px;line-height:1.55;}
 .tags{display:flex;gap:5px;flex-wrap:wrap;margin-top:12px;}
 .tag{font-family:var(--M);font-size:8.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-dim);border:1px solid var(--hair);padding:3px 7px;}
-.gplate .btn{margin-top:16px;width:100%;justify-content:center;}
+.gplate .btn{margin-top:16px;width:100%;justify-content:center;padding:11px 15px;}
 
 /* ── PROCESS ─────────────────────────────────────── */
 .proc-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:0;border:1px solid var(--hair);}
@@ -784,6 +784,15 @@ const BUILDS = [
     img:"",
     desc:"Logged website build for GYMROOS with a marketing-ready web design and Instagram link focus.",
     link:"https://gymroos.com.au/?utm_source=ig&utm_medium=social&utm_content=link_in_bio",
+    tags:["Web Design"],
+    art:"design"
+  },
+  {
+    title:"Koa Cafe",
+    category:"design",
+    img:"",
+    desc:"A polished web design build for Koa Cafe, focused on presenting the brand with a calm, modern online presence.",
+    link:"https://koa-cafe-sage.vercel.app",
     tags:["Web Design"],
     art:"design"
   },

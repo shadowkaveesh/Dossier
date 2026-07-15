@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Start a PromptOps build with Versatile Carz.">
+  <title>Start a Build | Versatile Carz</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;700;900&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="dossier-pages.css">
+</head>
+<body class="dossier-page">
+  <header class="dossier-header">
+    <div class="page-wrap">
+      <a class="dossier-brand" href="index.html">Versatile Carz</a>
+      <nav class="dossier-nav" aria-label="Intake navigation">
+        <a href="index.html#garage">Garage</a>
+        <a href="promptops.html">PromptOps</a>
+        <a href="#intake" aria-current="page">Start a Build</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page-main">
+    <div class="page-wrap">
+      <section class="intake-hero">
+        <div>
+          <div class="eyebrow">Spec 06 / Intake Form</div>
+          <h1>Start A <em>Build</em></h1>
+          <p class="lede">Tell me what you're building - a store, a campaign, a prompt system, or something that doesn't fit a category yet.</p>
+        </div>
+        <aside class="intake-aside" aria-label="Operator availability">
+          <div class="stage-corner top">Direct intake route</div>
+          <div class="aside-title">One build.<br>Clear brief.</div>
+          <div class="aside-list">
+            <div><b>Operator</b><span>Versatile Carz</span></div>
+            <div><b>Response</b><span>Within 24 hours</span></div>
+            <div><b>Availability</b><span>Remote engagements open</span></div>
+          </div>
+        </aside>
+      </section>
+
+      <section class="intake-section" id="intake">
+        <div class="intake-grid">
+          <form class="intake-form" id="intakeForm">
+            <div class="form-field"><label for="name">Name</label><input id="name" name="name" type="text" autocomplete="name" required placeholder="Your name"></div>
+            <div class="form-field"><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" required placeholder="you@domain.com"></div>
+            <div class="form-field"><label for="projectType">Project Type</label>
+              <select id="projectType" name="projectType">
+                <option>Ecom Store Build</option>
+                <option>Web Design</option>
+                <option>PromptOps System</option>
+                <option>Trading Consult</option>
+                <option>Brand &amp; Marketing</option>
+                <option>Automotive Craft</option>
+                <option>Something Else</option>
+              </select>
+            </div>
+            <div class="form-field"><label for="message">Message</label><textarea id="message" name="message" required placeholder="What are we building?"></textarea></div>
+            <button class="tech-btn primary" type="submit" id="submitButton">Submit Intake -&gt;</button>
+            <p class="form-status" id="formStatus" aria-live="polite"></p>
+          </form>
+          <aside class="intake-aside" aria-label="Intake details">
+            <div class="stage-corner top">Message destination</div>
+            <div class="aside-title">Brief.<br>Scope.<br>Build.</div>
+            <div class="aside-list">
+              <div><b>Skills</b><span>Ecom, Design, PromptOps, Forex, Marketing</span></div>
+              <div><b>Channel</b><span>Prepared email intake</span></div>
+              <div><b>Field notes</b><span>@versatile_carz</span></div>
+            </div>
+          </aside>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="dossier-footer">
+    <div class="page-wrap"><p>Versatile Carz / Build Sheet</p><p><a href="index.html">Return to dossier -&gt;</a></p></div>
+  </footer>
+
+  <script>
+    const recipient = 'kaveeshshadow@gmail.com';
+    const form = document.getElementById('intakeForm');
+    const projectType = document.getElementById('projectType');
+    const message = document.getElementById('message');
+    const status = document.getElementById('formStatus');
+    const allowedTypes = new Set([...projectType.options].map(option => option.value));
+    const params = new URLSearchParams(window.location.search);
+    const prefilledType = params.get('prefillType');
+    const prefilledMessage = params.get('prefillMsg');
+
+    if (allowedTypes.has(prefilledType)) projectType.value = prefilledType;
+    if (prefilledMessage) message.value = prefilledMessage;
+
+    form.addEventListener('submit', event => {
+      event.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const type = projectType.value;
+      const details = message.value.trim();
+      const subject = `Build Intake - ${type} - ${name || 'New Lead'}`;
+      const body = `Name: ${name}\nEmail: ${email}\nProject Type: ${type}\n\nMessage:\n${details}`;
+      status.textContent = 'Opening your prepared email intake.';
+      window.location.href = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    });
+  </script>
+</body>
+</html>
