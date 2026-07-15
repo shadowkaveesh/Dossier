@@ -101,8 +101,10 @@
       const details = message.value.trim();
       const subject = `Build Intake - ${type} - ${name || 'New Lead'}`;
       const body = `Name: ${name}\nEmail: ${email}\nProject Type: ${type}\n\nMessage:\n${details}`;
-      status.textContent = 'Opening your prepared email intake.';
-      window.location.href = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      const mailto = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      const gmail = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(recipient)}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      status.innerHTML = `If no email window opens, <a href="${gmail}" target="_blank" rel="noopener">open Gmail</a> or <a href="${mailto.replace(/&/g, '&amp;')}">open your email app</a>.`;
+      window.location.href = mailto;
     });
   </script>
 </body>
