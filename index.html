@@ -695,6 +695,7 @@ footer{border-top:1px solid var(--hair);padding:40px 0;}
           Submit Intake
           <span class="bwave"></span><span class="bsweep"></span><span class="bglass"></span>
         </button>
+        <p id="emailFallback" class="ft-t" hidden style="margin-top:14px;"></p>
       </form>
       <div class="rv2">
         <div class="reg-card">
@@ -1118,9 +1119,13 @@ function handleSubmit(e){
   const btn = document.getElementById('submitBtn');
   const to = 'kaveeshshadow@gmail.com';
   const subject = `Build Intake — ${type} — ${name || 'New Lead'}`;
-  const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nProject Type: ${type}\n\nMessage:\n${msg}`);
-  const mailto = `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${body}`;
-  window.location.href = mailto;
+  const messageBody = `Name: ${name}\nEmail: ${email}\nProject Type: ${type}\n\nMessage:\n${msg}`;
+  const mailto = `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(messageBody)}`;
+  const gmail = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(to)}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(messageBody)}`;
+  const fallback = document.getElementById('emailFallback');
+  fallback.hidden = false;
+  fallback.innerHTML = `If no email window opens, <a href="${gmail}" target="_blank" rel="noopener">open Gmail</a> or <a href="${mailto.replace(/&/g, '&amp;')}">open your email app</a>.`;
+  window.open(gmail, '_blank', 'noopener');
   btn.innerHTML = 'Intake Logged ✓<span class="bwave"></span><span class="bsweep"></span><span class="bglass"></span>';
   btn.disabled = true;
   setTimeout(() => {
