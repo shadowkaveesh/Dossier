@@ -1125,7 +1125,7 @@ function handleSubmit(e){
   const fallback = document.getElementById('emailFallback');
   fallback.hidden = false;
   fallback.innerHTML = `If no email window opens, <a href="${gmail}" target="_blank" rel="noopener">open Gmail</a> or <a href="${mailto.replace(/&/g, '&amp;')}">open your email app</a>.`;
-  window.location.href = mailto;
+  window.open(gmail, '_blank', 'noopener');
   btn.innerHTML = 'Intake Logged ✓<span class="bwave"></span><span class="bsweep"></span><span class="bglass"></span>';
   btn.disabled = true;
   setTimeout(() => {

@@ -104,7 +104,7 @@
       const mailto = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
       const gmail = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(recipient)}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
       status.innerHTML = `If no email window opens, <a href="${gmail}" target="_blank" rel="noopener">open Gmail</a> or <a href="${mailto.replace(/&/g, '&amp;')}">open your email app</a>.`;
-      window.location.href = mailto;
+      window.open(gmail, '_blank', 'noopener');
     });
   </script>
 </body>
